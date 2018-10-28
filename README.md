@@ -1,10 +1,10 @@
 # SDWebImagePDFCoder
 
-[![CI Status](https://img.shields.io/travis/SDWebImage/SDWebImagePDFCoder.PDF?style=flat)](https://travis-ci.org/SDWebImage/SDWebImagePDFCoder)
-[![Version](https://img.shields.io/cocoapods/v/SDWebImagePDFCoder.PDF?style=flat)](https://cocoapods.org/pods/SDWebImagePDFCoder)
-[![License](https://img.shields.io/cocoapods/l/SDWebImagePDFCoder.PDF?style=flat)](https://cocoapods.org/pods/SDWebImagePDFCoder)
-[![Platform](https://img.shields.io/cocoapods/p/SDWebImagePDFCoder.PDF?style=flat)](https://cocoapods.org/pods/SDWebImagePDFCoder)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.PDF?style=flat)](https://github.com/SDWebImage/SDWebImagePDFCoder)
+[![CI Status](https://img.shields.io/travis/SDWebImage/SDWebImagePDFCoder.svg?style=flat)](https://travis-ci.org/SDWebImage/SDWebImagePDFCoder)
+[![Version](https://img.shields.io/cocoapods/v/SDWebImagePDFCoder.svg?style=flat)](https://cocoapods.org/pods/SDWebImagePDFCoder)
+[![License](https://img.shields.io/cocoapods/l/SDWebImagePDFCoder.svg?style=flat)](https://cocoapods.org/pods/SDWebImagePDFCoder)
+[![Platform](https://img.shields.io/cocoapods/p/SDWebImagePDFCoder.svg?style=flat)](https://cocoapods.org/pods/SDWebImagePDFCoder)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/SDWebImage/SDWebImagePDFCoder)
 
 ## What's for
 SDWebImagePDFCoder is a PDF coder plugin for [SDWebImage](https://github.com/rs/SDWebImage/) framework, which provide the image loading support for [PDF](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics). The PDF rendering is done using Apple's built-in framework (UIKit/AppKit/Core Graphics).
@@ -99,6 +99,8 @@ imageView.sd_setImage(with: url, placeholderImage: nil, options: [], context: [.
 ## Screenshot
 
 <img src="https://raw.githubusercontent.com/SDWebImage/SDWebImagePDFCoder/master/Example/Screenshot/PDFDemo.png" width="300" />
+
+These PDF images are from [icons8](https://raw.githubusercontent.com/icons8/flat-color-icons), you can try the demo with your own PDF image as well.
 
 ## Author
 
