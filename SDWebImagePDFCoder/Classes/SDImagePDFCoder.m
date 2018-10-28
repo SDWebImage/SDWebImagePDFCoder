@@ -158,6 +158,8 @@
     CGPDFDocumentRelease(document);
 #endif
     
+    image.sd_imageFormat = SDImageFormatPDF;
+    
     return image;
 }
 

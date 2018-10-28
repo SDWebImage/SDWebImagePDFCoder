@@ -74,7 +74,7 @@ imageView.sd_setImage(with: url)
 
 For firmware which is below iOS/tvOS 11+, `UIImage` && `UIImageView` does not support vector image rendering. Even you can add PDF image in Xcode Asset Catalog, it was encoded to bitmap PNG format when compiled but not support runtime scale. 
 
-For `UIImageView`, we will only parse PDF with a fixed image size (from the PDF cropBox information). But we also support you to specify a desired size during image loading using `PDFImageSize` context option. And you can specify whether to keep aspect ratio using `PDFImagePreserveAspectRatio` context option.
+For `UIImageView`, we will only parse PDF with a fixed image size (from the PDF cropBox information). But we also support you to specify a desired size during image loading using `PDFImageSize` context option. And you can specify whether or not to keep aspect ratio during scale using `PDFImagePreserveAspectRatio` context option.
 
 + Objective-C
 
