@@ -10,6 +10,7 @@
 
 #define SD_FOUR_CC(c1,c2,c3,c4) ((uint32_t)(((c4) << 24) | ((c3) << 16) | ((c2) << 8) | (c1)))
 
+#if SD_UIKIT
 // iOS/tvOS 11+ UIImage add built-in vector PDF image support. So we use that instead of drawing bitmap image
 @interface UIImage (PrivatePDFSupport)
 
@@ -19,6 +20,7 @@
 + (instancetype)_imageWithCGPDFPage:(CGPDFPageRef)page scale:(double)scale orientation:(UIImageOrientation)orientation;
 
 @end
+#endif
 
 @implementation SDImagePDFCoder
 
@@ -82,12 +84,19 @@
 // Using Core Graphics to draw PDF but not PDFKit(iOS 11+/macOS 10.4+) to keep old firmware compatible
 - (UIImage *)sd_createPDFImageWithData:(nonnull NSData *)data pageNumber:(NSUInteger)pageNumber targetSize:(CGSize)targetSize preserveAspectRatio:(BOOL)preserveAspectRatio {
     NSParameterAssert(data);
+    NSParameterAssert(pageNumber > 0);
     UIImage *image;
     
 #if SD_MAC
     // macOS's `NSImage` supports PDF built-in rendering
-    image = [[NSImage alloc] initWithData:data];
-    
+    NSPDFImageRep *imageRep = [[NSPDFImageRep alloc] initWithData:data];
+    if (!imageRep) {
+        return nil;
+    }
+    // NSPDFImageRep page is 0 index...
+    imageRep.currentPage = pageNumber - 1;
+    image = [[NSImage alloc] initWithSize:targetSize];
+    [image addRepresentation:imageRep];
 #else
     
     CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)data);
@@ -151,6 +160,7 @@
     return image;
 }
 
+#if SD_UIKIT
 + (BOOL)supportsBuiltInPDFImage {
     static dispatch_once_t onceToken;
     static BOOL supports;
@@ -164,6 +174,7 @@
     });
     return supports;
 }
+#endif
 
 + (BOOL)isPDFFormatForData:(NSData *)data {
     if (!data) {
