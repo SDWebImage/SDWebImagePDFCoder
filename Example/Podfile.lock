@@ -3,7 +3,7 @@ PODS:
     - SDWebImage/Core (= 5.0.0-beta3)
   - SDWebImage/Core (5.0.0-beta3)
   - SDWebImagePDFCoder (0.1.0):
-    - SDWebImage (>= 5.0.0-beta)
+    - SDWebImage (>= 5.0.0-beta3)
 
 DEPENDENCIES:
   - SDWebImagePDFCoder (from `../`)
@@ -18,7 +18,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   SDWebImage: e52654ceef9fdc19f4c612d64a5b6d3f05dd81a4
-  SDWebImagePDFCoder: 28c0027dc67eb64633ae824166cc0af35ee6fb22
+  SDWebImagePDFCoder: 8b994250f0b82f4043afc6e6598f4e2b40cdbbab
 
 PODFILE CHECKSUM: ca5230ad7b6978adc4f1bdf02b8a0ba3005b984b
 

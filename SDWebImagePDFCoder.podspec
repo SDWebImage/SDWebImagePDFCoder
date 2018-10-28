@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/lizhuoli1126@126.com/SDWebImagePDFCoder'
+  s.homepage         = 'https://github.com/SDWebImage/SDWebImagePDFCoder'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'lizhuoli1126@126.com' => 'lizhuoli1126@126.com' }
-  s.source           = { :git => 'https://github.com/lizhuoli1126@126.com/SDWebImagePDFCoder.git', :tag => s.version.to_s }
+  s.author           = { 'DreamPiggy' => 'lizhuoli1126@126.com' }
+  s.source           = { :git => 'https://github.com/SDWebImage/SDWebImagePDFCoder.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
@@ -35,5 +35,5 @@ TODO: Add long description of the pod here.
   s.source_files = 'SDWebImagePDFCoder/Classes/**/*', 'SDWebImagePDFCoder/Module/SDWebImagePDFCoder.h'
   s.module_map = 'SDWebImagePDFCoder/Module/SDWebImagePDFCoder.modulemap'
   
-  s.dependency 'SDWebImage', '>= 5.0.0-beta'
+  s.dependency 'SDWebImage', '>= 5.0.0-beta3'
 end
