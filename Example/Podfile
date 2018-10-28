@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SDWebImagePDFCoder_Example' do
+  pod 'SDWebImagePDFCoder', :path => '../'
+
+  target 'SDWebImagePDFCoder_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
