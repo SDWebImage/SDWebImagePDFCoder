@@ -34,10 +34,10 @@ script:
 
   - echo Build as dynamic frameworks
   - carthage update --platform ios,tvos,macos --configuration DEBUG
-  - xcodebuild build clean -project SDWebImageSVGCoder.xcodeproj -scheme 'SDWebImageSVGCoder iOS' -sdk iphonesimulator PLATFORM_NAME=iphonesimulator -configuration Debug | xcpretty -c
-  - xcodebuild build clean -project SDWebImageSVGCoder.xcodeproj -scheme 'SDWebImageSVGCoder tvOS' -sdk appletvsimulator -configuration Debug | xcpretty -c
-  - xcodebuild build clean -project SDWebImageSVGCoder.xcodeproj -scheme 'SDWebImageSVGCoder macOS' -sdk macosx -configuration Debug | xcpretty -c
+  - xcodebuild build clean -project SDWebImagePDFCoder.xcodeproj -scheme 'SDWebImagePDFCoder iOS' -sdk iphonesimulator PLATFORM_NAME=iphonesimulator -configuration Debug | xcpretty -c
+  - xcodebuild build clean -project SDWebImagePDFCoder.xcodeproj -scheme 'SDWebImagePDFCoder tvOS' -sdk appletvsimulator -configuration Debug | xcpretty -c
+  - xcodebuild build clean -project SDWebImagePDFCoder.xcodeproj -scheme 'SDWebImagePDFCoder macOS' -sdk macosx -configuration Debug | xcpretty -c
 
   - echo Build example
   - pod install --project-directory=Example
-  - xcodebuild build -workspace Example/SDWebImageSVGCoder.xcworkspace -scheme SDWebImageSVGCoder-Example -sdk iphonesimulator -destination 'name=iPhone 6s' -configuration Debug | xcpretty -c
+  - xcodebuild build -workspace Example/SDWebImagePDFCoder.xcworkspace -scheme SDWebImagePDFCoder-Example -sdk iphonesimulator -destination 'name=iPhone 6s' -configuration Debug | xcpretty -c

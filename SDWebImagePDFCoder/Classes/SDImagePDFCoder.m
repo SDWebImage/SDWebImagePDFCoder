@@ -95,8 +95,9 @@
     }
     // NSPDFImageRep page is 0 index...
     imageRep.currentPage = pageNumber - 1;
-    image = [[NSImage alloc] initWithSize:targetSize];
+    image = [[NSImage alloc] initWithSize:imageRep.size];
     [image addRepresentation:imageRep];
+    
 #else
     
     CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)data);
