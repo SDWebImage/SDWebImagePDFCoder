@@ -29,14 +29,11 @@ TODO: Add long description of the pod here.
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
+  s.tvos.deployment_target = '9.0'
+  s.osx.deployment_target = '10.10'
 
-  s.source_files = 'SDWebImagePDFCoder/Classes/**/*'
+  s.source_files = 'SDWebImagePDFCoder/Classes/**/*', 'SDWebImagePDFCoder/Module/SDWebImagePDFCoder.h'
+  s.module_map = 'SDWebImagePDFCoder/Module/SDWebImagePDFCoder.modulemap'
   
-  # s.resource_bundles = {
-  #   'SDWebImagePDFCoder' => ['SDWebImagePDFCoder/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'SDWebImage', '>= 5.0.0-beta'
 end
