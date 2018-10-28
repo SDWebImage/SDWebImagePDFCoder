@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27E092DC99EF25EE9610D659 /* Pods_SDWebImagePDFCoder_Example_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE31C1258ED9B417FAD92B1 /* Pods_SDWebImagePDFCoder_Example_macOS.framework */; };
+		32D8F2FA2185F1C300FFC14A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D8F2F92185F1C300FFC14A /* AppDelegate.m */; };
+		32D8F2FD2185F1C300FFC14A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D8F2FC2185F1C300FFC14A /* ViewController.m */; };
+		32D8F2FF2185F1C400FFC14A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32D8F2FE2185F1C400FFC14A /* Assets.xcassets */; };
+		32D8F3022185F1C400FFC14A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D8F3002185F1C400FFC14A /* Main.storyboard */; };
+		32D8F3052185F1C400FFC14A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D8F3042185F1C400FFC14A /* main.m */; };
 		375DFBB23B282B7B20E66599 /* Pods_SDWebImagePDFCoder_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644F99D8DED2C8FC92668CEC /* Pods_SDWebImagePDFCoder_Example.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -41,6 +47,17 @@
 		1745C32CD7A3DC952B084514 /* Pods-SDWebImagePDFCoder_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImagePDFCoder_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImagePDFCoder_Tests/Pods-SDWebImagePDFCoder_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		23D236E5C8333D1EF1AF6ED1 /* Pods-SDWebImagePDFCoder_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImagePDFCoder_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImagePDFCoder_Example/Pods-SDWebImagePDFCoder_Example.release.xcconfig"; sourceTree = "<group>"; };
 		243AAAFCC482EEC1752548DA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		32D8F2F62185F1C300FFC14A /* SDWebImagePDFCoder_Example macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SDWebImagePDFCoder_Example macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		32D8F2F82185F1C300FFC14A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		32D8F2F92185F1C300FFC14A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		32D8F2FB2185F1C300FFC14A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		32D8F2FC2185F1C300FFC14A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		32D8F2FE2185F1C400FFC14A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		32D8F3012185F1C400FFC14A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		32D8F3032185F1C400FFC14A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32D8F3042185F1C400FFC14A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32D8F3062185F1C400FFC14A /* SDWebImagePDFCoder_Example_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SDWebImagePDFCoder_Example_macOS.entitlements; sourceTree = "<group>"; };
+		32D8F30A2185F3FD00FFC14A /* SDWebImagePDFCoder_Example macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "SDWebImagePDFCoder_Example macOS.entitlements"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* SDWebImagePDFCoder_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDWebImagePDFCoder_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -62,14 +79,25 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		644F99D8DED2C8FC92668CEC /* Pods_SDWebImagePDFCoder_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDWebImagePDFCoder_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7DF476A34E2A44DFCD90B16F /* Pods-SDWebImagePDFCoder_Example macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImagePDFCoder_Example macOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImagePDFCoder_Example macOS/Pods-SDWebImagePDFCoder_Example macOS.debug.xcconfig"; sourceTree = "<group>"; };
 		7E8B2554E3F514245ECA9329 /* SDWebImagePDFCoder.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SDWebImagePDFCoder.podspec; path = ../SDWebImagePDFCoder.podspec; sourceTree = "<group>"; };
 		86B75DB74FF533D71BDDF3F4 /* Pods_SDWebImagePDFCoder_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDWebImagePDFCoder_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9BE31C1258ED9B417FAD92B1 /* Pods_SDWebImagePDFCoder_Example_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDWebImagePDFCoder_Example_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B804462885514B9A9BD2089E /* Pods-SDWebImagePDFCoder_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImagePDFCoder_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImagePDFCoder_Example/Pods-SDWebImagePDFCoder_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		D0FEA4FB41AA3A0FDC8AD00E /* Pods-SDWebImagePDFCoder_Example macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImagePDFCoder_Example macOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImagePDFCoder_Example macOS/Pods-SDWebImagePDFCoder_Example macOS.release.xcconfig"; sourceTree = "<group>"; };
 		DAF3465F3CB05A575EB1B674 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		32D8F2F32185F1C300FFC14A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27E092DC99EF25EE9610D659 /* Pods_SDWebImagePDFCoder_Example_macOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6003F587195388D20070C39A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -95,12 +123,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32D8F2F72185F1C300FFC14A /* SDWebImagePDFCoder-Example-macOS */ = {
+			isa = PBXGroup;
+			children = (
+				32D8F2F82185F1C300FFC14A /* AppDelegate.h */,
+				32D8F2F92185F1C300FFC14A /* AppDelegate.m */,
+				32D8F2FB2185F1C300FFC14A /* ViewController.h */,
+				32D8F2FC2185F1C300FFC14A /* ViewController.m */,
+				32D8F2FE2185F1C400FFC14A /* Assets.xcassets */,
+				32D8F3002185F1C400FFC14A /* Main.storyboard */,
+				32D8F3032185F1C400FFC14A /* Info.plist */,
+				32D8F3042185F1C400FFC14A /* main.m */,
+				32D8F3062185F1C400FFC14A /* SDWebImagePDFCoder_Example_macOS.entitlements */,
+			);
+			path = "SDWebImagePDFCoder-Example-macOS";
+			sourceTree = "<group>";
+		};
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
+				32D8F30A2185F3FD00FFC14A /* SDWebImagePDFCoder_Example macOS.entitlements */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Example for SDWebImagePDFCoder */,
 				6003F5B5195388D20070C39A /* Tests */,
+				32D8F2F72185F1C300FFC14A /* SDWebImagePDFCoder-Example-macOS */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
 				8BE8772380912C62D7E36292 /* Pods */,
@@ -112,6 +158,7 @@
 			children = (
 				6003F58A195388D20070C39A /* SDWebImagePDFCoder_Example.app */,
 				6003F5AE195388D20070C39A /* SDWebImagePDFCoder_Tests.xctest */,
+				32D8F2F62185F1C300FFC14A /* SDWebImagePDFCoder_Example macOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,6 +172,7 @@
 				6003F5AF195388D20070C39A /* XCTest.framework */,
 				644F99D8DED2C8FC92668CEC /* Pods_SDWebImagePDFCoder_Example.framework */,
 				86B75DB74FF533D71BDDF3F4 /* Pods_SDWebImagePDFCoder_Tests.framework */,
+				9BE31C1258ED9B417FAD92B1 /* Pods_SDWebImagePDFCoder_Example_macOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -192,6 +240,8 @@
 				23D236E5C8333D1EF1AF6ED1 /* Pods-SDWebImagePDFCoder_Example.release.xcconfig */,
 				071738DB83E780E2999FD6BA /* Pods-SDWebImagePDFCoder_Tests.debug.xcconfig */,
 				1745C32CD7A3DC952B084514 /* Pods-SDWebImagePDFCoder_Tests.release.xcconfig */,
+				7DF476A34E2A44DFCD90B16F /* Pods-SDWebImagePDFCoder_Example macOS.debug.xcconfig */,
+				D0FEA4FB41AA3A0FDC8AD00E /* Pods-SDWebImagePDFCoder_Example macOS.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -199,6 +249,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		32D8F2F52185F1C300FFC14A /* SDWebImagePDFCoder_Example macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32D8F3092185F1C400FFC14A /* Build configuration list for PBXNativeTarget "SDWebImagePDFCoder_Example macOS" */;
+			buildPhases = (
+				FAB0E9DF9D9C44F2390837CE /* [CP] Check Pods Manifest.lock */,
+				32D8F2F22185F1C300FFC14A /* Sources */,
+				32D8F2F32185F1C300FFC14A /* Frameworks */,
+				32D8F2F42185F1C300FFC14A /* Resources */,
+				22FE92BAAED1AE463BAE9D55 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SDWebImagePDFCoder_Example macOS";
+			productName = "SDWebImagePDFCoder-Example-macOS";
+			productReference = 32D8F2F62185F1C300FFC14A /* SDWebImagePDFCoder_Example macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 		6003F589195388D20070C39A /* SDWebImagePDFCoder_Example */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "SDWebImagePDFCoder_Example" */;
@@ -244,9 +313,19 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = SD;
+				DefaultBuildSystemTypeForWorkspace = Original;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "lizhuoli1126@126.com";
 				TargetAttributes = {
+					32D8F2F52185F1C300FFC14A = {
+						CreatedOnToolsVersion = 10.0;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -267,11 +346,21 @@
 			targets = (
 				6003F589195388D20070C39A /* SDWebImagePDFCoder_Example */,
 				6003F5AD195388D20070C39A /* SDWebImagePDFCoder_Tests */,
+				32D8F2F52185F1C300FFC14A /* SDWebImagePDFCoder_Example macOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		32D8F2F42185F1C300FFC14A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32D8F2FF2185F1C400FFC14A /* Assets.xcassets in Resources */,
+				32D8F3022185F1C400FFC14A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6003F588195388D20070C39A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -294,6 +383,30 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		22FE92BAAED1AE463BAE9D55 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImagePDFCoder_Example macOS/Pods-SDWebImagePDFCoder_Example macOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage-macOS/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImagePDFCoder-macOS/SDWebImagePDFCoder.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImagePDFCoder.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImagePDFCoder_Example macOS/Pods-SDWebImagePDFCoder_Example macOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3DBFEB636CCE7A616AE2D566 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -303,8 +416,8 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImagePDFCoder_Example/Pods-SDWebImagePDFCoder_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImagePDFCoder/SDWebImagePDFCoder.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImagePDFCoder-iOS/SDWebImagePDFCoder.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -362,9 +475,41 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FAB0E9DF9D9C44F2390837CE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SDWebImagePDFCoder_Example macOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		32D8F2F22185F1C300FFC14A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32D8F2FD2185F1C300FFC14A /* ViewController.m in Sources */,
+				32D8F3052185F1C400FFC14A /* main.m in Sources */,
+				32D8F2FA2185F1C300FFC14A /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6003F586195388D20070C39A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -394,6 +539,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		32D8F3002185F1C400FFC14A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32D8F3012185F1C400FFC14A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		6003F596195388D20070C39A /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -421,6 +574,87 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		32D8F3072185F1C400FFC14A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7DF476A34E2A44DFCD90B16F /* Pods-SDWebImagePDFCoder_Example macOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "SDWebImagePDFCoder-Example-macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.SDWebImagePDFCoder-Example-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		32D8F3082185F1C400FFC14A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0FEA4FB41AA3A0FDC8AD00E /* Pods-SDWebImagePDFCoder_Example macOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "SDWebImagePDFCoder-Example-macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.SDWebImagePDFCoder-Example-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		6003F5BD195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -571,6 +805,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		32D8F3092185F1C400FFC14A /* Build configuration list for PBXNativeTarget "SDWebImagePDFCoder_Example macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32D8F3072185F1C400FFC14A /* Debug */,
+				32D8F3082185F1C400FFC14A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6003F585195388D10070C39A /* Build configuration list for PBXProject "SDWebImagePDFCoder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

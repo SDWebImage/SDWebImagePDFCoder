@@ -99,8 +99,9 @@ imageView.sd_setImage(with: url, placeholderImage: nil, options: [], context: [.
 ## Screenshot
 
 <img src="https://raw.githubusercontent.com/SDWebImage/SDWebImagePDFCoder/master/Example/Screenshot/PDFDemo.png" width="300" />
+<img src="https://raw.githubusercontent.com/SDWebImage/SDWebImagePDFCoder/master/Example/Screenshot/PDFDemo-macOS.png" width="600" />
 
-These PDF images are from [icons8](https://raw.githubusercontent.com/icons8/flat-color-icons), you can try the demo with your own PDF image as well.
+These PDF images are from [icons8](https://github.com/icons8/flat-color-icons/tree/master/pdf), you can try the demo with your own PDF image as well.
 
 ## Author
 
