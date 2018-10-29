@@ -10,8 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- A unsigned interger raw value which specify the desired PDF image page number. Because PDF can contains mutiple pages. Attention the page number index is started with 1. (NSNumber)
- If you don't provide this value, or the value is out of [1,MAX], use 1 (the first page) instead.
+ A unsigned interger raw value which specify the desired PDF image page number. Because PDF can contains mutiple pages. The page number index is started with 0. (NSNumber)
+ If you don't provide this value, use 0 (the first page) instead.
  */
 FOUNDATION_EXPORT SDWebImageContextOption _Nonnull const SDWebImageContextPDFPageNumber;
 

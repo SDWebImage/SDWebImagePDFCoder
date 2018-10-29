@@ -42,18 +42,13 @@
         return nil;
     }
     
-    NSUInteger pageNumber = 1;
+    NSUInteger pageNumber = 0;
     CGSize imageSize = CGSizeZero;
     BOOL preserveAspectRatio = YES;
     // Parse args
     SDWebImageContext *context = options[SDImageCoderWebImageContext];
     if (context[SDWebImageContextPDFPageNumber]) {
-        NSUInteger rawPageNumber = [context[SDWebImageContextPDFPageNumber] unsignedIntegerValue];
-        if (rawPageNumber == 0) {
-            // start with 1 index
-            rawPageNumber = 1;
-        }
-        pageNumber = rawPageNumber;
+        pageNumber = [context[SDWebImageContextPDFPageNumber] unsignedIntegerValue];
     }
     if (context[SDWebImageContextPDFImageSize]) {
         NSValue *sizeValue = context[SDWebImageContextPDFImageSize];
@@ -84,7 +79,6 @@
 // Using Core Graphics to draw PDF but not PDFKit(iOS 11+/macOS 10.4+) to keep old firmware compatible
 - (UIImage *)sd_createPDFImageWithData:(nonnull NSData *)data pageNumber:(NSUInteger)pageNumber targetSize:(CGSize)targetSize preserveAspectRatio:(BOOL)preserveAspectRatio {
     NSParameterAssert(data);
-    NSParameterAssert(pageNumber > 0);
     UIImage *image;
     
 #if SD_MAC
@@ -93,8 +87,7 @@
     if (!imageRep) {
         return nil;
     }
-    // NSPDFImageRep page is 0 index...
-    imageRep.currentPage = pageNumber - 1;
+    imageRep.currentPage = pageNumber
     image = [[NSImage alloc] initWithSize:imageRep.size];
     [image addRepresentation:imageRep];
     
@@ -110,7 +103,8 @@
         return nil;
     }
     
-    CGPDFPageRef page = CGPDFDocumentGetPage(document, pageNumber);
+    // `CGPDFDocumentGetPage` page number is 1-indexed.
+    CGPDFPageRef page = CGPDFDocumentGetPage(document, pageNumber + 1);
     if (!page) {
         CGPDFDocumentRelease(document);
         return nil;
