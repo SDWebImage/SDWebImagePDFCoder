@@ -8,5 +8,6 @@
 #import "SDWebImagePDFCoderDefine.h"
 
 SDWebImageContextOption _Nonnull const SDWebImageContextPDFPageNumber = @"pdfPageNumber";
+SDWebImageContextOption _Nonnull const SDWebImageContextPDFPerferredBitmap = @"pdfPerferredBitmap";
 SDWebImageContextOption _Nonnull const SDWebImageContextPDFImageSize = @"pdfImageSize";
 SDWebImageContextOption _Nonnull const SDWebImageContextPDFImagePreserveAspectRatio = @"pdfImagePreserveAspectRatio";

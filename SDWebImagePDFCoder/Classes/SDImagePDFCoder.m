@@ -7,6 +7,7 @@
 
 #import "SDImagePDFCoder.h"
 #import "SDWebImagePDFCoderDefine.h"
+#import "objc/runtime.h"
 
 #define SD_FOUR_CC(c1,c2,c3,c4) ((uint32_t)(((c4) << 24) | ((c3) << 16) | ((c2) << 8) | (c1)))
 
@@ -21,6 +22,92 @@
 
 @end
 #endif
+
+#if SD_MAC
+static void *kNSGraphicsContextScaleFactorKey;
+
+static CGContextRef SDCGContextCreateBitmapContext(CGSize size, BOOL opaque, CGFloat scale) {
+    if (scale == 0) {
+        // Match `UIGraphicsBeginImageContextWithOptions`, reset to the scale factor of the device’s main screen if scale is 0.
+        scale = [NSScreen mainScreen].backingScaleFactor;
+    }
+    size_t width = ceil(size.width * scale);
+    size_t height = ceil(size.height * scale);
+    if (width < 1 || height < 1) return NULL;
+    
+    //pre-multiplied BGRA for non-opaque, BGRX for opaque, 8-bits per component, as Apple's doc
+    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+    CGImageAlphaInfo alphaInfo = kCGBitmapByteOrder32Host | (opaque ? kCGImageAlphaNoneSkipFirst : kCGImageAlphaPremultipliedFirst);
+    CGContextRef context = CGBitmapContextCreate(NULL, width, height, 8, 0, space, kCGBitmapByteOrderDefault | alphaInfo);
+    CGColorSpaceRelease(space);
+    if (!context) {
+        return NULL;
+    }
+    CGContextScaleCTM(context, scale, scale);
+    
+    return context;
+}
+#endif
+
+static void SDGraphicsBeginImageContextWithOptions(CGSize size, BOOL opaque, CGFloat scale) {
+#if SD_UIKIT || SD_WATCH
+    UIGraphicsBeginImageContextWithOptions(size, opaque, scale);
+#else
+    CGContextRef context = SDCGContextCreateBitmapContext(size, opaque, scale);
+    if (!context) {
+        return;
+    }
+    NSGraphicsContext *graphicsContext = [NSGraphicsContext graphicsContextWithCGContext:context flipped:NO];
+    objc_setAssociatedObject(graphicsContext, &kNSGraphicsContextScaleFactorKey, @(scale), OBJC_ASSOCIATION_RETAIN);
+    CGContextRelease(context);
+    [NSGraphicsContext saveGraphicsState];
+    NSGraphicsContext.currentContext = graphicsContext;
+#endif
+}
+
+static CGContextRef SDGraphicsGetCurrentContext(void) {
+#if SD_UIKIT || SD_WATCH
+    return UIGraphicsGetCurrentContext();
+#else
+    return NSGraphicsContext.currentContext.CGContext;
+#endif
+}
+
+static void SDGraphicsEndImageContext(void) {
+#if SD_UIKIT || SD_WATCH
+    UIGraphicsEndImageContext();
+#else
+    [NSGraphicsContext restoreGraphicsState];
+#endif
+}
+
+static UIImage * SDGraphicsGetImageFromCurrentImageContext(void) {
+#if SD_UIKIT || SD_WATCH
+    return UIGraphicsGetImageFromCurrentImageContext();
+#else
+    NSGraphicsContext *context = NSGraphicsContext.currentContext;
+    CGContextRef contextRef = context.CGContext;
+    if (!contextRef) {
+        return nil;
+    }
+    CGImageRef imageRef = CGBitmapContextCreateImage(contextRef);
+    if (!imageRef) {
+        return nil;
+    }
+    CGFloat scale = 0;
+    NSNumber *scaleFactor = objc_getAssociatedObject(context, &kNSGraphicsContextScaleFactorKey);
+    if ([scaleFactor isKindOfClass:[NSNumber class]]) {
+        scale = scaleFactor.doubleValue;
+    }
+    if (!scale) {
+        // reset to the scale factor of the device’s main screen if scale is 0.
+        scale = [NSScreen mainScreen].backingScaleFactor;
+    }
+    NSImage *image = [[NSImage alloc] initWithCGImage:imageRef scale:scale orientation:kCGImagePropertyOrientationUp];
+    CGImageRelease(imageRef);
+    return image;
+#endif
+}
 
 @implementation SDImagePDFCoder
 
@@ -43,12 +130,16 @@
     }
     
     NSUInteger pageNumber = 0;
+    BOOL preferredBitmap = NO;
     CGSize imageSize = CGSizeZero;
     BOOL preserveAspectRatio = YES;
     // Parse args
     SDWebImageContext *context = options[SDImageCoderWebImageContext];
     if (context[SDWebImageContextPDFPageNumber]) {
         pageNumber = [context[SDWebImageContextPDFPageNumber] unsignedIntegerValue];
+    }
+    if (context[SDWebImageContextPDFPerferredBitmap]) {
+        preferredBitmap = [context[SDWebImageContextPDFPerferredBitmap] boolValue];
     }
     if (context[SDWebImageContextPDFImageSize]) {
         NSValue *sizeValue = context[SDWebImageContextPDFImageSize];
@@ -62,7 +153,14 @@
         preserveAspectRatio = [context[SDWebImageContextPDFImagePreserveAspectRatio] boolValue];
     }
     
-    UIImage *image = [self sd_createPDFImageWithData:data pageNumber:pageNumber targetSize:imageSize preserveAspectRatio:preserveAspectRatio];
+    UIImage *image;
+    if (!preferredBitmap && [self.class supportsVectorPDFImage]) {
+        image = [self createVectorPDFWithData:data pageNumber:pageNumber];
+    } else {
+        image = [self createBitmapPDFWithData:data pageNumber:pageNumber targetSize:imageSize preserveAspectRatio:preserveAspectRatio];
+    }
+    
+    image.sd_imageFormat = SDImageFormatPDF;
     
     return image;
 }
@@ -76,8 +174,8 @@
     return nil;
 }
 
-// Using Core Graphics to draw PDF but not PDFKit(iOS 11+/macOS 10.4+) to keep old firmware compatible
-- (UIImage *)sd_createPDFImageWithData:(nonnull NSData *)data pageNumber:(NSUInteger)pageNumber targetSize:(CGSize)targetSize preserveAspectRatio:(BOOL)preserveAspectRatio {
+#pragma mark - Vector PDF representation
+- (UIImage *)createVectorPDFWithData:(nonnull NSData *)data pageNumber:(NSUInteger)pageNumber {
     NSParameterAssert(data);
     UIImage *image;
     
@@ -87,12 +185,10 @@
     if (!imageRep) {
         return nil;
     }
-    imageRep.currentPage = pageNumber
+    imageRep.currentPage = pageNumber;
     image = [[NSImage alloc] initWithSize:imageRep.size];
     [image addRepresentation:imageRep];
-    
 #else
-    
     CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)data);
     if (!provider) {
         return nil;
@@ -110,11 +206,33 @@
         return nil;
     }
     
-    // Check if we can use built-in PDF image support, instead of draw bitmap
-    if ([[self class] supportsBuiltInPDFImage]) {
-        UIImage *image = [UIImage _imageWithCGPDFPage:page];
+    image = [UIImage _imageWithCGPDFPage:page];
+    CGPDFDocumentRelease(document);
+#endif
+    
+    return image;
+}
+
+#pragma mark - Bitmap PDF representation
+- (UIImage *)createBitmapPDFWithData:(nonnull NSData *)data pageNumber:(NSUInteger)pageNumber targetSize:(CGSize)targetSize preserveAspectRatio:(BOOL)preserveAspectRatio {
+    NSParameterAssert(data);
+    UIImage *image;
+    
+    CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)data);
+    if (!provider) {
+        return nil;
+    }
+    CGPDFDocumentRef document = CGPDFDocumentCreateWithProvider(provider);
+    CGDataProviderRelease(provider);
+    if (!document) {
+        return nil;
+    }
+    
+    // `CGPDFDocumentGetPage` page number is 1-indexed.
+    CGPDFPageRef page = CGPDFDocumentGetPage(document, pageNumber + 1);
+    if (!page) {
         CGPDFDocumentRelease(document);
-        return image;
+        return nil;
     }
     
     CGPDFBox box = kCGPDFCropBox;
@@ -134,31 +252,33 @@
     CGAffineTransform scaleTransform = CGAffineTransformMakeScale(xScale, yScale);
     CGAffineTransform transform = CGPDFPageGetDrawingTransform(page, box, drawRect, 0, preserveAspectRatio);
     
-    UIGraphicsBeginImageContextWithOptions(targetRect.size, NO, 0);
-    CGContextRef context = UIGraphicsGetCurrentContext();
+    SDGraphicsBeginImageContextWithOptions(targetRect.size, NO, 0);
+    CGContextRef context = SDGraphicsGetCurrentContext();
     
-    // Core Graphics coordinate system use the bottom-left, iOS use the flipped one
+#if SD_UIKIT
+    // Core Graphics coordinate system use the bottom-left, UIkit use the flipped one
     CGContextTranslateCTM(context, 0, targetRect.size.height);
     CGContextScaleCTM(context, 1, -1);
+#endif
     
     CGContextConcatCTM(context, scaleTransform);
     CGContextConcatCTM(context, transform);
     
     CGContextDrawPDFPage(context, page);
     
-    image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+    image = SDGraphicsGetImageFromCurrentImageContext();
+    SDGraphicsEndImageContext();
     
     CGPDFDocumentRelease(document);
-#endif
-    
-    image.sd_imageFormat = SDImageFormatPDF;
     
     return image;
 }
 
-#if SD_UIKIT
-+ (BOOL)supportsBuiltInPDFImage {
++ (BOOL)supportsVectorPDFImage {
+#if SD_MAC
+    // macOS's `NSImage` supports PDF built-in rendering
+    return YES;
+#else
     static dispatch_once_t onceToken;
     static BOOL supports;
     dispatch_once(&onceToken, ^{
@@ -170,8 +290,8 @@
         }
     });
     return supports;
-}
 #endif
+}
 
 + (BOOL)isPDFFormatForData:(NSData *)data {
     if (!data) {
