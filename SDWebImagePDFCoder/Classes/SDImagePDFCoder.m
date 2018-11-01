@@ -130,7 +130,7 @@ static UIImage * SDGraphicsGetImageFromCurrentImageContext(void) {
     }
     
     NSUInteger pageNumber = 0;
-    BOOL preferredBitmap = NO;
+    BOOL prefersBitmap = NO;
     CGSize imageSize = CGSizeZero;
     BOOL preserveAspectRatio = YES;
     // Parse args
@@ -138,8 +138,8 @@ static UIImage * SDGraphicsGetImageFromCurrentImageContext(void) {
     if (context[SDWebImageContextPDFPageNumber]) {
         pageNumber = [context[SDWebImageContextPDFPageNumber] unsignedIntegerValue];
     }
-    if (context[SDWebImageContextPDFPerferredBitmap]) {
-        preferredBitmap = [context[SDWebImageContextPDFPerferredBitmap] boolValue];
+    if (context[SDWebImageContextPDFPrefersBitmap]) {
+        prefersBitmap = [context[SDWebImageContextPDFPrefersBitmap] boolValue];
     }
     if (context[SDWebImageContextPDFImageSize]) {
         NSValue *sizeValue = context[SDWebImageContextPDFImageSize];
@@ -154,7 +154,7 @@ static UIImage * SDGraphicsGetImageFromCurrentImageContext(void) {
     }
     
     UIImage *image;
-    if (!preferredBitmap && [self.class supportsVectorPDFImage]) {
+    if (!prefersBitmap && [self.class supportsVectorPDFImage]) {
         image = [self createVectorPDFWithData:data pageNumber:pageNumber];
     } else {
         image = [self createBitmapPDFWithData:data pageNumber:pageNumber targetSize:imageSize preserveAspectRatio:preserveAspectRatio];
