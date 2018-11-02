@@ -57,7 +57,6 @@
 		32D8F3032185F1C400FFC14A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32D8F3042185F1C400FFC14A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32D8F3062185F1C400FFC14A /* SDWebImagePDFCoder_Example_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SDWebImagePDFCoder_Example_macOS.entitlements; sourceTree = "<group>"; };
-		32D8F30A2185F3FD00FFC14A /* SDWebImagePDFCoder_Example macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "SDWebImagePDFCoder_Example macOS.entitlements"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* SDWebImagePDFCoder_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDWebImagePDFCoder_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -142,7 +141,6 @@
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
-				32D8F30A2185F3FD00FFC14A /* SDWebImagePDFCoder_Example macOS.entitlements */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Example for SDWebImagePDFCoder */,
 				6003F5B5195388D20070C39A /* Tests */,
