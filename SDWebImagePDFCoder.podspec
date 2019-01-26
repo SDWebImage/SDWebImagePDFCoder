@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SDWebImagePDFCoder'
-  s.version          = '0.1.0'
-  s.summary          = 'SVG coder plugin for SDWebImage, using SVGKit'
+  s.version          = '0.1.1'
+  s.summary          = 'A PDF coder plugin for SDWebImage, using built-in framework'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -33,5 +33,5 @@ SDWebImageSVGCoder is a SVG coder plugin for SDWebImage framework, which provide
   s.source_files = 'SDWebImagePDFCoder/Classes/**/*', 'SDWebImagePDFCoder/Module/SDWebImagePDFCoder.h'
   s.module_map = 'SDWebImagePDFCoder/Module/SDWebImagePDFCoder.modulemap'
   
-  s.dependency 'SDWebImage', '>= 5.0.0-beta3'
+  s.dependency 'SDWebImage', '>= 5.0.0-beta4'
 end
