@@ -389,7 +389,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImagePDFCoder_Example macOS/Pods-SDWebImagePDFCoder_Example macOS-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SDWebImagePDFCoder_Example macOS/Pods-SDWebImagePDFCoder_Example macOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-macOS/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImagePDFCoder-macOS/SDWebImagePDFCoder.framework",
 			);
@@ -402,7 +402,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImagePDFCoder_Example macOS/Pods-SDWebImagePDFCoder_Example macOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SDWebImagePDFCoder_Example macOS/Pods-SDWebImagePDFCoder_Example macOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3DBFEB636CCE7A616AE2D566 /* [CP] Embed Pods Frameworks */ = {
@@ -413,7 +413,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImagePDFCoder_Example/Pods-SDWebImagePDFCoder_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SDWebImagePDFCoder_Example/Pods-SDWebImagePDFCoder_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImagePDFCoder-iOS/SDWebImagePDFCoder.framework",
 			);
@@ -426,7 +426,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImagePDFCoder_Example/Pods-SDWebImagePDFCoder_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SDWebImagePDFCoder_Example/Pods-SDWebImagePDFCoder_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		67A44179C245B7B76F9B7EA7 /* [CP] Check Pods Manifest.lock */ = {
