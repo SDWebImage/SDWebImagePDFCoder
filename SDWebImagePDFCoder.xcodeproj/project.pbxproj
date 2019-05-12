@@ -28,10 +28,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		32CA9E9C2185BC3D00322AF3 /* SDWebImagePDFCoder_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImagePDFCoder_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		32CA9E9C2185BC3D00322AF3 /* SDWebImagePDFCoder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImagePDFCoder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32CA9EA72185BC7400322AF3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Module/Info.plist; sourceTree = "<group>"; };
-		32CA9EAE2185BCEA00322AF3 /* SDWebImagePDFCoder_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImagePDFCoder_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		32CA9EBB2185BD0700322AF3 /* SDWebImagePDFCoder_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImagePDFCoder_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		32CA9EAE2185BCEA00322AF3 /* SDWebImagePDFCoder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImagePDFCoder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		32CA9EBB2185BD0700322AF3 /* SDWebImagePDFCoder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImagePDFCoder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32CA9EC32185BDBB00322AF3 /* SDWebImagePDFCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDWebImagePDFCoder.h; path = Module/SDWebImagePDFCoder.h; sourceTree = "<group>"; };
 		32CA9EC82185BDC300322AF3 /* SDWebImagePDFCoderDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImagePDFCoderDefine.h; sourceTree = "<group>"; };
 		32CA9ECA2185BDC300322AF3 /* SDImagePDFCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImagePDFCoder.h; sourceTree = "<group>"; };
@@ -82,9 +82,9 @@
 		32CA9E9D2185BC3D00322AF3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				32CA9E9C2185BC3D00322AF3 /* SDWebImagePDFCoder_iOS.framework */,
-				32CA9EAE2185BCEA00322AF3 /* SDWebImagePDFCoder_tvOS.framework */,
-				32CA9EBB2185BD0700322AF3 /* SDWebImagePDFCoder_macOS.framework */,
+				32CA9E9C2185BC3D00322AF3 /* SDWebImagePDFCoder.framework */,
+				32CA9EAE2185BCEA00322AF3 /* SDWebImagePDFCoder.framework */,
+				32CA9EBB2185BD0700322AF3 /* SDWebImagePDFCoder.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -171,7 +171,7 @@
 			);
 			name = "SDWebImagePDFCoder iOS";
 			productName = SDWebImagePDFCoder;
-			productReference = 32CA9E9C2185BC3D00322AF3 /* SDWebImagePDFCoder_iOS.framework */;
+			productReference = 32CA9E9C2185BC3D00322AF3 /* SDWebImagePDFCoder.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		32CA9EAD2185BCEA00322AF3 /* SDWebImagePDFCoder tvOS */ = {
@@ -189,7 +189,7 @@
 			);
 			name = "SDWebImagePDFCoder tvOS";
 			productName = "SDWebImagePDFCoder-tvOS";
-			productReference = 32CA9EAE2185BCEA00322AF3 /* SDWebImagePDFCoder_tvOS.framework */;
+			productReference = 32CA9EAE2185BCEA00322AF3 /* SDWebImagePDFCoder.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		32CA9EBA2185BD0700322AF3 /* SDWebImagePDFCoder macOS */ = {
@@ -207,7 +207,7 @@
 			);
 			name = "SDWebImagePDFCoder macOS";
 			productName = "SDWebImagePDFCoder-macOS";
-			productReference = 32CA9EBB2185BD0700322AF3 /* SDWebImagePDFCoder_macOS.framework */;
+			productReference = 32CA9EBB2185BD0700322AF3 /* SDWebImagePDFCoder.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -444,8 +444,7 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.SDWebImagePDFCoder-iOS";
-				PRODUCT_MODULE_NAME = SDWebImagePDFCoder;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = SDWebImagePDFCoder;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -473,8 +472,7 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.SDWebImagePDFCoder-iOS";
-				PRODUCT_MODULE_NAME = SDWebImagePDFCoder;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = SDWebImagePDFCoder;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -501,8 +499,7 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.SDWebImagePDFCoder-tvOS";
-				PRODUCT_MODULE_NAME = SDWebImagePDFCoder;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = SDWebImagePDFCoder;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -531,8 +528,7 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.SDWebImagePDFCoder-tvOS";
-				PRODUCT_MODULE_NAME = SDWebImagePDFCoder;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = SDWebImagePDFCoder;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -564,8 +560,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.SDWebImagePDFCoder-macOS";
-				PRODUCT_MODULE_NAME = SDWebImagePDFCoder;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = SDWebImagePDFCoder;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
@@ -595,8 +590,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.SDWebImagePDFCoder-macOS";
-				PRODUCT_MODULE_NAME = SDWebImagePDFCoder;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = SDWebImagePDFCoder;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};

@@ -1,7 +1,7 @@
 PODS:
-  - SDWebImage (5.0.0):
-    - SDWebImage/Core (= 5.0.0)
-  - SDWebImage/Core (5.0.0)
+  - SDWebImage (5.0.2):
+    - SDWebImage/Core (= 5.0.2)
+  - SDWebImage/Core (5.0.2)
   - SDWebImagePDFCoder (0.2.0):
     - SDWebImage (~> 5.0)
 
@@ -17,7 +17,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SDWebImage: 5de80a0302de9e377e62f47d2fa1304efff0e55f
+  SDWebImage: 6764b5fa0f73c203728052955dbefa2bf1f33282
   SDWebImagePDFCoder: e980f143f97ff0bf8366a4b74d0acb50f0c9d8b6
 
 PODFILE CHECKSUM: 13cc95bf609e99946808ed65a198e32a645f3acd

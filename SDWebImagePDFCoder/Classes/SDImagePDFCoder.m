@@ -19,6 +19,7 @@
 - (instancetype)_initWithCGPDFPage:(CGPDFPageRef)page scale:(double)scale orientation:(UIImageOrientation)orientation;
 + (instancetype)_imageWithCGPDFPage:(CGPDFPageRef)page;
 + (instancetype)_imageWithCGPDFPage:(CGPDFPageRef)page scale:(double)scale orientation:(UIImageOrientation)orientation;
+- (CGPDFPageRef)_CGPDFPage;
 
 @end
 #endif
@@ -81,11 +82,44 @@
 
 
 - (BOOL)canEncodeToFormat:(SDImageFormat)format {
-    return NO;
+    return format == SDImageFormatPDF;
 }
 
 - (NSData *)encodedDataWithImage:(UIImage *)image format:(SDImageFormat)format options:(SDImageCoderOptions *)options {
-    return nil;
+    if (![self.class supportsVectorPDFImage]) {
+        return nil;
+    }
+#if SD_MAC
+    // Pixel size use `NSImageRepMatchesDevice` to avoid CGImage bitmap format
+    NSRect imageRect = NSMakeRect(0, 0, NSImageRepMatchesDevice, NSImageRepMatchesDevice);
+    NSImageRep *imageRep = [image bestRepresentationForRect:imageRect context:nil hints:nil];
+    if (![imageRep isKindOfClass:NSPDFImageRep.class]) {
+        return nil;
+    }
+    return ((NSPDFImageRep *)imageRep).PDFRepresentation;
+#else
+    CGPDFPageRef page = [image _CGPDFPage];
+    if (!page) {
+        return nil;
+    }
+    
+    // Draw the PDF page using PDFContextToData
+    NSMutableData *data = [NSMutableData data];
+    CGPDFBox box = kCGPDFMediaBox;
+    CGRect rect = CGPDFPageGetBoxRect(page, box);
+    
+    UIGraphicsBeginPDFContextToData(data, CGRectZero, nil);
+    UIGraphicsBeginPDFPageWithInfo(rect, nil);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
+    // Core Graphics Coordinate System convert
+    CGContextScaleCTM(context, 1, -1);
+    CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
+    CGContextDrawPDFPage(context, page);
+    UIGraphicsEndPDFContext();
+    
+    return [data copy];
+#endif
 }
 
 #pragma mark - Vector PDF representation
@@ -149,7 +183,7 @@
         return nil;
     }
     
-    CGPDFBox box = kCGPDFCropBox;
+    CGPDFBox box = kCGPDFMediaBox;
     CGRect rect = CGPDFPageGetBoxRect(page, box);
     CGRect targetRect = rect;
     if (!CGSizeEqualToSize(targetSize, CGSizeZero)) {
