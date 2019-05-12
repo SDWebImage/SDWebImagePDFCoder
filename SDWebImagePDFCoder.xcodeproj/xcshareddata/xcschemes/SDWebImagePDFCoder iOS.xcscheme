@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "32CA9E9B2185BC3D00322AF3"
-               BuildableName = "SDWebImagePDFCoder_iOS.framework"
+               BuildableName = "SDWebImagePDFCoder.framework"
                BlueprintName = "SDWebImagePDFCoder iOS"
                ReferencedContainer = "container:SDWebImagePDFCoder.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "32CA9E9B2185BC3D00322AF3"
-            BuildableName = "SDWebImagePDFCoder_iOS.framework"
+            BuildableName = "SDWebImagePDFCoder.framework"
             BlueprintName = "SDWebImagePDFCoder iOS"
             ReferencedContainer = "container:SDWebImagePDFCoder.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "32CA9E9B2185BC3D00322AF3"
-            BuildableName = "SDWebImagePDFCoder_iOS.framework"
+            BuildableName = "SDWebImagePDFCoder.framework"
             BlueprintName = "SDWebImagePDFCoder iOS"
             ReferencedContainer = "container:SDWebImagePDFCoder.xcodeproj">
          </BuildableReference>

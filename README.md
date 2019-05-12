@@ -94,6 +94,26 @@ let PDFImageSize = CGSize(width: 500, height: 500)
 imageView.sd_setImage(with: url, placeholderImage: nil, options: [], context: [.pdfImageSize : PDFImageSize])
 ```
 
+## Export PDF data
+
+`SDWebImagePDFCoder` provide an easy way to export the PDF image generated from framework, to the original PDF data.
+
+Note: For firmware which is below iOS/tvOS 11+, UIImage does not support PDF vector image as well as exporting.
+
++ Objective-C
+
+```objectivec
+UIImage *image; // UIImage with vector image, or NSImage contains `NSPDFImageRep`
+NSData *imageData = [image sd_imageDataAsFormat:SDImageFormatPDF];
+```
+
++ Swift
+
+```swift
+let image; // UIImage with vector image, or NSImage contains `NSPDFImageRep`
+let imageData = image.sd_imageData(as: .PDF)
+```
+
 ## Screenshot
 
 <img src="https://raw.githubusercontent.com/SDWebImage/SDWebImagePDFCoder/master/Example/Screenshot/PDFDemo.png" width="300" />
