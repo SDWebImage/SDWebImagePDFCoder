@@ -203,7 +203,7 @@
     SDGraphicsBeginImageContextWithOptions(targetRect.size, NO, 0);
     CGContextRef context = SDGraphicsGetCurrentContext();
     
-#if SD_UIKIT
+#if SD_UIKIT || SD_WATCH
     // Core Graphics coordinate system use the bottom-left, UIkit use the flipped one
     CGContextTranslateCTM(context, 0, targetRect.size.height);
     CGContextScaleCTM(context, 1, -1);
