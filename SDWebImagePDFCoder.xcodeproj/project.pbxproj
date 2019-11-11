@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32407BE123797C7E00F9AFA4 /* SDWebImagePDFCoderDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CA9EC82185BDC300322AF3 /* SDWebImagePDFCoderDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32407BE223797C7E00F9AFA4 /* SDWebImagePDFCoderDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CA9ECB2185BDC300322AF3 /* SDWebImagePDFCoderDefine.m */; };
+		32407BE323797C7E00F9AFA4 /* SDImagePDFCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CA9ECA2185BDC300322AF3 /* SDImagePDFCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32407BE423797C7E00F9AFA4 /* SDImagePDFCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CA9ECC2185BDC300322AF3 /* SDImagePDFCoder.m */; };
+		32407BE523797C8E00F9AFA4 /* SDWebImagePDFCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CA9EC32185BDBB00322AF3 /* SDWebImagePDFCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32407BE723797CAD00F9AFA4 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32407BE623797CAD00F9AFA4 /* SDWebImage.framework */; };
 		32CA9EC42185BDBB00322AF3 /* SDWebImagePDFCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CA9EC32185BDBB00322AF3 /* SDWebImagePDFCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32CA9EC52185BDBB00322AF3 /* SDWebImagePDFCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CA9EC32185BDBB00322AF3 /* SDWebImagePDFCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32CA9EC62185BDBB00322AF3 /* SDWebImagePDFCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CA9EC32185BDBB00322AF3 /* SDWebImagePDFCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -28,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		32407BD923797C0400F9AFA4 /* SDWebImagePDFCoder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImagePDFCoder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		32407BE623797CAD00F9AFA4 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/watchOS/SDWebImage.framework; sourceTree = "<group>"; };
 		32CA9E9C2185BC3D00322AF3 /* SDWebImagePDFCoder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImagePDFCoder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32CA9EA72185BC7400322AF3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Module/Info.plist; sourceTree = "<group>"; };
 		32CA9EAE2185BCEA00322AF3 /* SDWebImagePDFCoder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImagePDFCoder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,6 +51,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		32407BD623797C0400F9AFA4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32407BE723797CAD00F9AFA4 /* SDWebImage.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32CA9E992185BC3D00322AF3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -85,6 +101,7 @@
 				32CA9E9C2185BC3D00322AF3 /* SDWebImagePDFCoder.framework */,
 				32CA9EAE2185BCEA00322AF3 /* SDWebImagePDFCoder.framework */,
 				32CA9EBB2185BD0700322AF3 /* SDWebImagePDFCoder.framework */,
+				32407BD923797C0400F9AFA4 /* SDWebImagePDFCoder.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,6 +130,7 @@
 		32CA9EDC2185BDEF00322AF3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32407BE623797CAD00F9AFA4 /* SDWebImage.framework */,
 				32CA9EE12185BE0400322AF3 /* SDWebImage.framework */,
 				32CA9EDF2185BDFA00322AF3 /* SDWebImage.framework */,
 				32CA9EDD2185BDEF00322AF3 /* SDWebImage.framework */,
@@ -123,6 +141,16 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		32407BD423797C0400F9AFA4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32407BE323797C7E00F9AFA4 /* SDImagePDFCoder.h in Headers */,
+				32407BE523797C8E00F9AFA4 /* SDWebImagePDFCoder.h in Headers */,
+				32407BE123797C7E00F9AFA4 /* SDWebImagePDFCoderDefine.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32CA9E972185BC3D00322AF3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -156,6 +184,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		32407BD823797C0400F9AFA4 /* SDWebImagePDFCoder watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32407BE023797C0400F9AFA4 /* Build configuration list for PBXNativeTarget "SDWebImagePDFCoder watchOS" */;
+			buildPhases = (
+				32407BD423797C0400F9AFA4 /* Headers */,
+				32407BD523797C0400F9AFA4 /* Sources */,
+				32407BD623797C0400F9AFA4 /* Frameworks */,
+				32407BD723797C0400F9AFA4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SDWebImagePDFCoder watchOS";
+			productName = "SDWebImagePDFCoder watchOS";
+			productReference = 32407BD923797C0400F9AFA4 /* SDWebImagePDFCoder.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		32CA9E9B2185BC3D00322AF3 /* SDWebImagePDFCoder iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 32CA9EA42185BC3D00322AF3 /* Build configuration list for PBXNativeTarget "SDWebImagePDFCoder iOS" */;
@@ -219,6 +265,9 @@
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = SDWebImagePDFCoder;
 				TargetAttributes = {
+					32407BD823797C0400F9AFA4 = {
+						CreatedOnToolsVersion = 11.2;
+					};
 					32CA9E9B2185BC3D00322AF3 = {
 						CreatedOnToolsVersion = 10.0;
 					};
@@ -245,11 +294,19 @@
 				32CA9E9B2185BC3D00322AF3 /* SDWebImagePDFCoder iOS */,
 				32CA9EAD2185BCEA00322AF3 /* SDWebImagePDFCoder tvOS */,
 				32CA9EBA2185BD0700322AF3 /* SDWebImagePDFCoder macOS */,
+				32407BD823797C0400F9AFA4 /* SDWebImagePDFCoder watchOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		32407BD723797C0400F9AFA4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32CA9E9A2185BC3D00322AF3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -274,6 +331,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		32407BD523797C0400F9AFA4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32407BE223797C7E00F9AFA4 /* SDWebImagePDFCoderDefine.m in Sources */,
+				32407BE423797C7E00F9AFA4 /* SDImagePDFCoder.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32CA9E982185BC3D00322AF3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -304,6 +370,64 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		32407BDE23797C0400F9AFA4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/watchOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/SDWebImagePDFCoder/Module/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.SDWebImagePDFCoder-watchOS";
+				PRODUCT_NAME = SDWebImagePDFCoder;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		32407BDF23797C0400F9AFA4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/watchOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/SDWebImagePDFCoder/Module/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.SDWebImagePDFCoder-watchOS";
+				PRODUCT_NAME = SDWebImagePDFCoder;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
 		32CA9EA22185BC3D00322AF3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -599,6 +723,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		32407BE023797C0400F9AFA4 /* Build configuration list for PBXNativeTarget "SDWebImagePDFCoder watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32407BDE23797C0400F9AFA4 /* Debug */,
+				32407BDF23797C0400F9AFA4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		32CA9E962185BC3C00322AF3 /* Build configuration list for PBXProject "SDWebImagePDFCoder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
