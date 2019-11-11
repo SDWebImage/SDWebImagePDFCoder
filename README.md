@@ -5,6 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/SDWebImagePDFCoder.svg?style=flat)](https://cocoapods.org/pods/SDWebImagePDFCoder)
 [![Platform](https://img.shields.io/cocoapods/p/SDWebImagePDFCoder.svg?style=flat)](https://cocoapods.org/pods/SDWebImagePDFCoder)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/SDWebImage/SDWebImagePDFCoder)
+[![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg?style=flat)](https://swift.org/package-manager/)
 
 ## What's for
 SDWebImagePDFCoder is a PDF coder plugin for [SDWebImage](https://github.com/rs/SDWebImage/) framework, which provide the image loading support for [PDF](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics). The PDF rendering is done using Apple's built-in framework (UIKit/AppKit/Core Graphics).
@@ -17,9 +18,10 @@ You can modify the code or use some other PDF files to check the compatibility.
 
 ## Requirements
 
-+ iOS 8
-+ tvOS 9
-+ macOS 10.10
++ iOS 8+
++ tvOS 9+
++ macOS 10.10+
++ watchOS 2+
 
 ## Installation
 
@@ -38,6 +40,18 @@ SDWebImagePDFCoder is available through [Carthage](https://github.com/Carthage/C
 
 ```
 github "SDWebImage/SDWebImagePDFCoder"
+```
+
+#### Swift Package Manager (Xcode 11+)
+
+SDWebImagePDFCoder is available through [Swift Package Manager](https://swift.org/package-manager).
+
+```swift
+let package = Package(
+    dependencies: [
+        .package(url: "https://github.com/SDWebImage/SDWebImagePDFCoder.git", from: "0.4")
+    ]
+)
 ```
 
 ## Usage
