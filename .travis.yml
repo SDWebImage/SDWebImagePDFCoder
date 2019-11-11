@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode10.2
+osx_image: xcode11
 
 addons:
   homebrew:
@@ -41,6 +41,7 @@ script:
   - xcodebuild build clean -project SDWebImagePDFCoder.xcodeproj -scheme 'SDWebImagePDFCoder iOS' -sdk iphonesimulator PLATFORM_NAME=iphonesimulator -configuration Debug | xcpretty -c
   - xcodebuild build clean -project SDWebImagePDFCoder.xcodeproj -scheme 'SDWebImagePDFCoder tvOS' -sdk appletvsimulator -configuration Debug | xcpretty -c
   - xcodebuild build clean -project SDWebImagePDFCoder.xcodeproj -scheme 'SDWebImagePDFCoder macOS' -sdk macosx -configuration Debug | xcpretty -c
+  - xcodebuild build clean -project SDWebImagePDFCoder.xcodeproj -scheme 'SDWebImagePDFCoder watchOS' -sdk watchsimulator -configuration Debug | xcpretty -c
 
   - echo Build example
   - pod install --project-directory=Example
