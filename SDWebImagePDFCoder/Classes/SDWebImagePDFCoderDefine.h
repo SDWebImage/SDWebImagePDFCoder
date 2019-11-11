@@ -5,7 +5,7 @@
 //  Created by lizhuoli on 2018/10/28.
 //
 
-#import <SDWebImage/SDWebImage.h>
+@import SDWebImage;
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode10.2
+osx_image: xcode11
 
 addons:
   homebrew:
@@ -37,11 +37,12 @@ script:
   - pod lib lint --allow-warnings
 
   - echo Build as dynamic frameworks
-  - carthage update --platform ios,tvos,macos --configuration DEBUG
+  - carthage update --configuration DEBUG
   - xcodebuild build clean -project SDWebImagePDFCoder.xcodeproj -scheme 'SDWebImagePDFCoder iOS' -sdk iphonesimulator PLATFORM_NAME=iphonesimulator -configuration Debug | xcpretty -c
   - xcodebuild build clean -project SDWebImagePDFCoder.xcodeproj -scheme 'SDWebImagePDFCoder tvOS' -sdk appletvsimulator -configuration Debug | xcpretty -c
   - xcodebuild build clean -project SDWebImagePDFCoder.xcodeproj -scheme 'SDWebImagePDFCoder macOS' -sdk macosx -configuration Debug | xcpretty -c
+  - xcodebuild build clean -project SDWebImagePDFCoder.xcodeproj -scheme 'SDWebImagePDFCoder watchOS' -sdk watchsimulator -configuration Debug | xcpretty -c
 
   - echo Build example
   - pod install --project-directory=Example
-  - xcodebuild build -workspace Example/SDWebImagePDFCoder.xcworkspace -scheme SDWebImagePDFCoder-Example -sdk iphonesimulator -destination 'name=iPhone 6s' -configuration Debug | xcpretty -c
+  - xcodebuild build -workspace Example/SDWebImagePDFCoder.xcworkspace -scheme SDWebImagePDFCoder-Example -sdk iphonesimulator -destination 'name=iPhone 8' -configuration Debug | xcpretty -c

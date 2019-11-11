@@ -11,7 +11,7 @@
 
 #define SD_FOUR_CC(c1,c2,c3,c4) ((uint32_t)(((c4) << 24) | ((c3) << 16) | ((c2) << 8) | (c1)))
 
-#if SD_UIKIT
+#if SD_UIKIT || SD_WATCH
 // iOS/tvOS 11+ UIImage add built-in vector PDF image support. So we use that instead of drawing bitmap image
 @interface UIImage (PrivatePDFSupport)
 
@@ -58,10 +58,10 @@
     }
     if (context[SDWebImageContextPDFImageSize]) {
         NSValue *sizeValue = context[SDWebImageContextPDFImageSize];
-#if SD_UIKIT
-        imageSize = sizeValue.CGSizeValue;
-#else
+#if SD_MAC
         imageSize = sizeValue.sizeValue;
+#else
+        imageSize = sizeValue.CGSizeValue;
 #endif
     }
     if (context[SDWebImageContextPDFImagePreserveAspectRatio]) {
