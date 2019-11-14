@@ -86,7 +86,9 @@ imageView.sd_setImage(with: url)
 
 For firmware which is below iOS/tvOS 11+, `UIImage` && `UIImageView` does not support vector image rendering. Even you can add PDF image in Xcode Asset Catalog, it was encoded to bitmap PNG format when compiled but not support runtime scale. 
 
-For `UIImageView`, we will only parse PDF with a fixed image size (from the PDF cropBox information). But we also support you to specify a desired size during image loading using `PDFImageSize` context option. And you can specify whether or not to keep aspect ratio during scale using `PDFImagePreserveAspectRatio` context option.
+For `UIImageView`, we will only parse PDF with a fixed image size (from the PDF cropBox information). But we also support you to specify a desired size during image loading using `.pdfImageSize` context option. And you can specify whether or not to keep aspect ratio during scale using `.pdfImagePreserveAspectRatio` context option.
+
+Note: Even you're on iOS/tvOS 11+, you can also use the `.pdfPrefersBitmap` context option to force us to generate the bitmap form of PDF, instead of the vector format. This can be used for some general image processing code.
 
 + Objective-C
 
@@ -95,7 +97,7 @@ SDImagePDFCoder *PDFCoder = [SDImagePDFCoder sharedCoder];
 [[SDImageCodersManager sharedManager] addCoder:PDFCoder];
 UIImageView *imageView;
 CGSize PDFImageSize = CGSizeMake(500, 500);
-[imageView sd_setImageWithURL:url placeholderImage:nil options:0 context:@{SDWebImageContextPDFImageSize : @(PDFImageSize)];
+[imageView sd_setImageWithURL:url placeholderImage:nil options:0 context:@{SDWebImageContextPDFPrefersBitmap : @YES, SDWebImageContextPDFImageSize : @(PDFImageSize)];
 ```
 
 + Swift
@@ -105,14 +107,14 @@ let PDFCoder = SDImagePDFCoder.shared
 SDImageCodersManager.shared.addCoder(PDFCoder)
 let imageView: UIImageView
 let PDFImageSize = CGSize(width: 500, height: 500)
-imageView.sd_setImage(with: url, placeholderImage: nil, options: [], context: [.pdfImageSize : PDFImageSize])
+imageView.sd_setImage(with: url, placeholderImage: nil, options: [], context: [.pdfPrefersBitmap : true, .pdfImageSize : PDFImageSize])
 ```
 
 ## Export PDF data
 
 `SDWebImagePDFCoder` provide an easy way to export the PDF image generated from framework, to the original PDF data.
 
-Note: For firmware which is below iOS/tvOS 11+, UIImage does not support PDF vector image as well as exporting.
+Note: For firmware which is below iOS/tvOS 11+, UIImage does not support PDF vector image as well as exporting. The bitmap form of PDF does not support PDF data export as well.
 
 + Objective-C
 
