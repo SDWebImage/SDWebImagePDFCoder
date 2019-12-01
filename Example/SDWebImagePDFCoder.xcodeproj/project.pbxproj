@@ -386,16 +386,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SDWebImagePDFCoder_Example macOS/Pods-SDWebImagePDFCoder_Example macOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-macOS/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImagePDFCoder-macOS/SDWebImagePDFCoder.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImagePDFCoder.framework",
@@ -410,16 +406,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SDWebImagePDFCoder_Example/Pods-SDWebImagePDFCoder_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImagePDFCoder-iOS/SDWebImagePDFCoder.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImagePDFCoder.framework",
