@@ -26,10 +26,10 @@
     NSURL *pdfURL = [NSURL URLWithString:@"https://raw.githubusercontent.com/icons8/flat-color-icons/master/pdf/about.pdf"];
     NSURL *pdfURL2 = [NSURL URLWithString:@"https://raw.githubusercontent.com/icons8/flat-color-icons/master/pdf/webcam.pdf"];
     
-    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    CGSize screenSize = self.view.bounds.size;
     
     UIImageView *imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height / 2)];
-    imageView1.contentMode = UIViewContentModeScaleAspectFill;
+    imageView1.contentMode = UIViewContentModeScaleAspectFit;
     imageView1.clipsToBounds = YES;
     
     UIImageView *imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, screenSize.height / 2, screenSize.width, screenSize.height / 2)];

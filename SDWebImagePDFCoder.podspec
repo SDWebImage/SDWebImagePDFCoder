@@ -33,6 +33,11 @@ SDWebImageSVGCoder is a SVG coder plugin for SDWebImage framework, which provide
 
   s.source_files = 'SDWebImagePDFCoder/Classes/**/*', 'SDWebImagePDFCoder/Module/SDWebImagePDFCoder.h'
   s.module_map = 'SDWebImagePDFCoder/Module/SDWebImagePDFCoder.modulemap'
+
+  s.pod_target_xcconfig = {
+    'SUPPORTS_MACCATALYST' => 'YES',
+    'DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER' => 'NO'
+  }
   
   s.dependency 'SDWebImage', '~> 5.0'
 end
