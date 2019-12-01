@@ -12,19 +12,26 @@
 #define SD_FOUR_CC(c1,c2,c3,c4) ((uint32_t)(((c4) << 24) | ((c3) << 16) | ((c2) << 8) | (c1)))
 
 #if SD_UIKIT || SD_WATCH
-// iOS/tvOS 11+ UIImage add built-in vector PDF image support. So we use that instead of drawing bitmap image
-@interface UIImage (PrivatePDFSupport)
+static SEL SDImageWithCGPDFPageSEL = NULL;
+static SEL SDCGPDFPageSEL = NULL;
 
-- (instancetype)_initWithCGPDFPage:(CGPDFPageRef)page;
-- (instancetype)_initWithCGPDFPage:(CGPDFPageRef)page scale:(double)scale orientation:(UIImageOrientation)orientation;
-+ (instancetype)_imageWithCGPDFPage:(CGPDFPageRef)page;
-+ (instancetype)_imageWithCGPDFPage:(CGPDFPageRef)page scale:(double)scale orientation:(UIImageOrientation)orientation;
-- (CGPDFPageRef)_CGPDFPage;
-
-@end
+static inline NSString *SDBase64DecodedString(NSString *base64String) {
+    NSData *data = [[NSData alloc] initWithBase64EncodedString:base64String options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    if (!data) {
+        return nil;
+    }
+    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+}
 #endif
 
 @implementation SDImagePDFCoder
+
+#if SD_UIKIT || SD_WATCH
++ (void)initialize {
+    SDImageWithCGPDFPageSEL = NSSelectorFromString(SDBase64DecodedString(@"X2ltYWdlV2l0aENHUERGUGFnZTo="));
+    SDCGPDFPageSEL = NSSelectorFromString(SDBase64DecodedString(@"X0NHUERGUGFnZQ=="));
+}
+#endif
 
 + (SDImagePDFCoder *)sharedCoder {
     static dispatch_once_t onceToken;
@@ -98,7 +105,7 @@
     }
     return ((NSPDFImageRep *)imageRep).PDFRepresentation;
 #else
-    CGPDFPageRef page = [image _CGPDFPage];
+    CGPDFPageRef page = ((CGPDFPageRef (*)(id,SEL))[image methodForSelector:SDCGPDFPageSEL])(image, SDCGPDFPageSEL);
     if (!page) {
         return nil;
     }
@@ -154,7 +161,7 @@
         return nil;
     }
     
-    image = [UIImage _imageWithCGPDFPage:page];
+    image = ((UIImage *(*)(id,SEL,CGPDFPageRef))[UIImage.class methodForSelector:SDImageWithCGPDFPageSEL])(UIImage.class, SDImageWithCGPDFPageSEL, page);
     CGPDFDocumentRelease(document);
 #endif
     
@@ -231,7 +238,7 @@
     static BOOL supports;
     dispatch_once(&onceToken, ^{
         // iOS 11+ supports PDF built-in rendering, use selector to check is more accurate
-        if ([UIImage respondsToSelector:@selector(_imageWithCGPDFPage:)]) {
+        if ([UIImage respondsToSelector:SDImageWithCGPDFPageSEL]) {
             supports = YES;
         } else {
             supports = NO;
