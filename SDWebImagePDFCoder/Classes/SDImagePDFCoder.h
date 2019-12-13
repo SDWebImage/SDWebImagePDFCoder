@@ -5,7 +5,11 @@
 //  Created by lizhuoli on 2018/10/28.
 //
 
+#if __has_include(<SDWebImage/SDWebImage.h>)
+#import <SDWebImage/SDWebImage.h>
+#else
 @import SDWebImage;
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 
