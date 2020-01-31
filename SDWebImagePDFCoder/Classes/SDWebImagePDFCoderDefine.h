@@ -23,7 +23,7 @@ FOUNDATION_EXPORT SDWebImageContextOption _Nonnull const SDWebImageContextPDFPag
  A BOOL value which specify whether we prefer the actual bitmap representation instead of vector representation for PDF image. This is because the UIImage on iOS 11+ (NSImgae on macOS) can use the vector image format, which support dynamic scale without losing any detail. However, for some image processing logic, user may need the actual bitmap representation to manage pixels. Also, for lower firmware on iOS, the `UIImage` does not support vector rendering, user may want to handle them using the same code. (NSNumber)
  If you don't provide this value, use NO for default value and prefer the vector format when possible.
  */
-FOUNDATION_EXPORT SDWebImageContextOption _Nonnull const SDWebImageContextPDFPrefersBitmap;
+FOUNDATION_EXPORT SDWebImageContextOption _Nonnull const SDWebImageContextPDFPrefersBitmap __attribute__((deprecated("Use the new context option (for WebCache category), or coder option (for SDImageCoder protocol) instead. Pass CGSize.zero means the box size of PDF", "SDWebImageContextImageThumbnailPixelSize")));
 
 #pragma mark - Bitmap Representation Options
 /**
@@ -49,13 +49,6 @@ FOUNDATION_EXPORT SDWebImageContextOption _Nonnull const SDWebImageContextPDFIma
  @note works for `SDImageCoder`
  */
 FOUNDATION_EXPORT SDImageCoderOption _Nonnull const SDImageCoderDecodePDFPageNumber;
-
-/**
- A BOOL value which specify whether we prefer the actual bitmap representation instead of vector representation for PDF image. This is because the UIImage on iOS 11+ (NSImgae on macOS) can use the vector image format, which support dynamic scale without losing any detail. However, for some image processing logic, user may need the actual bitmap representation to manage pixels. Also, for lower firmware on iOS, the `UIImage` does not support vector rendering, user may want to handle them using the same code. (NSNumber)
- If you don't provide this value, use NO for default value and prefer the vector format when possible.
- @note works for `SDImageCoder`
- */
-FOUNDATION_EXPORT SDImageCoderOption _Nonnull const SDImageCoderDecodePDFPrefersBitmap;
 
 /**
  `SDImageCoderDecodeThumnailPixelSize`: The same as context option `SDWebImageContextImageThumbnailPixelSize`

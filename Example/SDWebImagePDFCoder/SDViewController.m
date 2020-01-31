@@ -25,6 +25,7 @@
     [[SDImageCodersManager sharedManager] addCoder:PDFCoder];
     NSURL *pdfURL = [NSURL URLWithString:@"https://raw.githubusercontent.com/icons8/flat-color-icons/master/pdf/about.pdf"];
     NSURL *pdfURL2 = [NSURL URLWithString:@"https://raw.githubusercontent.com/icons8/flat-color-icons/master/pdf/webcam.pdf"];
+    NSURL *pdfURL3 = [NSURL URLWithString:@"https://raw.githubusercontent.com/icons8/flat-color-icons/master/pdf/like.pdf"];
     
     CGSize screenSize = self.view.bounds.size;
     
@@ -36,8 +37,13 @@
     imageView2.contentMode = UIViewContentModeScaleAspectFit;
     imageView2.clipsToBounds = YES;
     
+    UIImageView *imageView3 = [[UIImageView alloc] init];
+    imageView3.frame = CGRectMake(screenSize.width - 100, screenSize.height - 100, 100, 100);
+    imageView3.contentMode = UIViewContentModeScaleToFill;
+    
     [self.view addSubview:imageView1];
     [self.view addSubview:imageView2];
+    [self.view addSubview:imageView3];
     
     [imageView1 sd_setImageWithURL:pdfURL placeholderImage:nil options:SDWebImageRetryFailed completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (image) {
@@ -46,7 +52,7 @@
             NSAssert(pdfData.length > 0, @"PDF Data export failed");
         }
     }];
-    [imageView2 sd_setImageWithURL:pdfURL2 placeholderImage:nil options:SDWebImageRetryFailed context:@{SDWebImageContextImageThumbnailPixelSize : @(imageView2.bounds.size)} progress:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    [imageView2 sd_setImageWithURL:pdfURL2 placeholderImage:nil options:SDWebImageRetryFailed completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (image) {
             NSLog(@"PDF load animation success");
             [UIView animateWithDuration:2 animations:^{
@@ -56,6 +62,13 @@
                     imageView2.bounds = CGRectMake(0, 0, screenSize.width, screenSize.height / 2);
                 }];
             }];
+        }
+    }];
+    [imageView3 sd_setImageWithURL:pdfURL3 placeholderImage:nil options:SDWebImageRetryFailed context:@{SDWebImageContextImageThumbnailPixelSize: @(CGSizeMake(100, 100))} progress:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if (image) {
+            NSLog(@"PDF bitmap load success.");
+            NSData *svgData = [image sd_imageDataAsFormat:SDImageFormatPDF];
+            NSAssert(!svgData, @"SVG Data should not exist");
         }
     }];
 }

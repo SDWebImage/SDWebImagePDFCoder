@@ -65,12 +65,8 @@ static inline NSString *SDBase64DecodedString(NSString *base64String) {
     } else if (options[SDImageCoderDecodePDFPageNumber]) {
         pageNumber = [options[SDImageCoderDecodePDFPageNumber] unsignedIntegerValue];
     }
-    if (context[SDWebImageContextPDFPrefersBitmap]) {
-        prefersBitmap = [context[SDWebImageContextPDFPrefersBitmap] boolValue];
-    } else if (options[SDImageCoderDecodePDFPrefersBitmap]) {
-        prefersBitmap = [options[SDImageCoderDecodePDFPrefersBitmap] boolValue];
-    }
     if (context[SDWebImageContextPDFImageSize]) {
+        prefersBitmap = YES;
         NSValue *sizeValue = context[SDWebImageContextPDFImageSize];
 #if SD_MAC
         imageSize = sizeValue.sizeValue;
@@ -78,12 +74,15 @@ static inline NSString *SDBase64DecodedString(NSString *base64String) {
         imageSize = sizeValue.CGSizeValue;
 #endif
     } else if (options[SDImageCoderDecodeThumbnailPixelSize]) {
+        prefersBitmap = YES;
         NSValue *sizeValue = options[SDImageCoderDecodeThumbnailPixelSize];
 #if SD_MAC
         imageSize = sizeValue.sizeValue;
 #else
         imageSize = sizeValue.CGSizeValue;
 #endif
+    } else if (context[SDWebImageContextPDFPrefersBitmap]) {
+        prefersBitmap = [context[SDWebImageContextPDFPrefersBitmap] boolValue];
     }
     if (context[SDWebImageContextPDFImagePreserveAspectRatio]) {
         preserveAspectRatio = [context[SDWebImageContextPDFImagePreserveAspectRatio] boolValue];
