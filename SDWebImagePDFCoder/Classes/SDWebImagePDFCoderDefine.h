@@ -22,20 +22,21 @@ FOUNDATION_EXPORT SDWebImageContextOption _Nonnull const SDWebImageContextPDFPag
 /**
  A BOOL value which specify whether we prefer the actual bitmap representation instead of vector representation for PDF image. This is because the UIImage on iOS 11+ (NSImgae on macOS) can use the vector image format, which support dynamic scale without losing any detail. However, for some image processing logic, user may need the actual bitmap representation to manage pixels. Also, for lower firmware on iOS, the `UIImage` does not support vector rendering, user may want to handle them using the same code. (NSNumber)
  If you don't provide this value, use NO for default value and prefer the vector format when possible.
+ @note Deprecated, use `SDWebImageContextImageThumbnailPixelSize`. Pass CGSize.zero means the mediaBox size of SVG.
  */
-FOUNDATION_EXPORT SDWebImageContextOption _Nonnull const SDWebImageContextPDFPrefersBitmap __attribute__((deprecated("Use the new context option (for WebCache category), or coder option (for SDImageCoder protocol) instead. Pass CGSize.zero means the box size of PDF", "SDWebImageContextImageThumbnailPixelSize")));
+FOUNDATION_EXPORT SDWebImageContextOption _Nonnull const SDWebImageContextPDFPrefersBitmap __attribute__((deprecated("Use the new context option (for WebCache category), or coder option (for SDImageCoder protocol) instead. Pass CGSize.zero means the mediaBox size of PDF", "SDWebImageContextImageThumbnailPixelSize")));
 
 #pragma mark - Bitmap Representation Options
 /**
  A CGSize raw value which specify the desired PDF image size during image loading. Because vector image like PDF format, may not contains a fixed size, or you want to get a larger size bitmap representation UIImage. (NSValue)
- If you don't provide this value, use the PDF cropBox size instead.
+ If you don't provide this value, use the PDF mediaBox size instead.
  @note For iOS/tvOS 11+, you don't need this option and it will be ignored. Because UIImage support built-in vector rendering and scaling for PDF. Changing imageView's contentMode and bounds instead.
  @note For macOS user. Changing imageViews' imageScaling and bounds instead.
  */
 FOUNDATION_EXPORT SDWebImageContextOption _Nonnull const SDWebImageContextPDFImageSize __attribute__((deprecated("Use the new context option (for WebCache category), or coder option (for SDImageCoder protocol) instead", "SDWebImageContextImageThumbnailPixelSize")));
 
 /**
- A BOOL value which specify the whether PDF image should keep aspect ratio during image loading. Because when you specify image size via `SDWebImageContextPDFImageSize`, we need to know whether to keep aspect ratio or not when image size is not equal to PDF cropBox size. (NSNumber)
+ A BOOL value which specify the whether PDF image should keep aspect ratio during image loading. Because when you specify image size via `SDWebImageContextPDFImageSize`, we need to know whether to keep aspect ratio or not when image size is not equal to PDF mediaBox size. (NSNumber)
  If you don't provide this value, use YES for default value.
  @note For iOS/tvOS 11+, you don't need this option and it will be ignored. Because UIImage support built-in vector rendering and scaling for PDF. Changing imageView's contentMode and bounds instead.
  @note For macOS user. Changing imageViews' imageScaling and bounds instead.
