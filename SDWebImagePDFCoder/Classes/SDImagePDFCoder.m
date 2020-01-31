@@ -55,25 +55,41 @@ static inline NSString *SDBase64DecodedString(NSString *base64String) {
     BOOL prefersBitmap = NO;
     CGSize imageSize = CGSizeZero;
     BOOL preserveAspectRatio = YES;
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     // Parse args
     SDWebImageContext *context = options[SDImageCoderWebImageContext];
     if (context[SDWebImageContextPDFPageNumber]) {
         pageNumber = [context[SDWebImageContextPDFPageNumber] unsignedIntegerValue];
-    }
-    if (context[SDWebImageContextPDFPrefersBitmap]) {
-        prefersBitmap = [context[SDWebImageContextPDFPrefersBitmap] boolValue];
+    } else if (options[SDImageCoderDecodePDFPageNumber]) {
+        pageNumber = [options[SDImageCoderDecodePDFPageNumber] unsignedIntegerValue];
     }
     if (context[SDWebImageContextPDFImageSize]) {
+        prefersBitmap = YES;
         NSValue *sizeValue = context[SDWebImageContextPDFImageSize];
 #if SD_MAC
         imageSize = sizeValue.sizeValue;
 #else
         imageSize = sizeValue.CGSizeValue;
 #endif
+    } else if (options[SDImageCoderDecodeThumbnailPixelSize]) {
+        prefersBitmap = YES;
+        NSValue *sizeValue = options[SDImageCoderDecodeThumbnailPixelSize];
+#if SD_MAC
+        imageSize = sizeValue.sizeValue;
+#else
+        imageSize = sizeValue.CGSizeValue;
+#endif
+    } else if (context[SDWebImageContextPDFPrefersBitmap]) {
+        prefersBitmap = [context[SDWebImageContextPDFPrefersBitmap] boolValue];
     }
     if (context[SDWebImageContextPDFImagePreserveAspectRatio]) {
         preserveAspectRatio = [context[SDWebImageContextPDFImagePreserveAspectRatio] boolValue];
+    } else if (options[SDImageCoderDecodePreserveAspectRatio]) {
+        preserveAspectRatio = [context[SDImageCoderDecodePreserveAspectRatio] boolValue];
     }
+#pragma clang diagnostic pop
     
     UIImage *image;
     if (!prefersBitmap && [self.class supportsVectorPDFImage]) {

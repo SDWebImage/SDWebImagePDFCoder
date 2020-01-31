@@ -49,7 +49,7 @@ SDWebImagePDFCoder is available through [Swift Package Manager](https://swift.or
 ```swift
 let package = Package(
     dependencies: [
-        .package(url: "https://github.com/SDWebImage/SDWebImagePDFCoder.git", from: "0.4")
+        .package(url: "https://github.com/SDWebImage/SDWebImagePDFCoder.git", from: "0.6")
     ]
 )
 ```
@@ -86,9 +86,9 @@ imageView.sd_setImage(with: url)
 
 For firmware which is below iOS/tvOS 11+, `UIImage` && `UIImageView` does not support vector image rendering. Even you can add PDF image in Xcode Asset Catalog, it was encoded to bitmap PNG format when compiled but not support runtime scale. 
 
-For `UIImageView`, we will only parse PDF with a fixed image size (from the PDF cropBox information). But we also support you to specify a desired size during image loading using `.pdfImageSize` context option. And you can specify whether or not to keep aspect ratio during scale using `.pdfImagePreserveAspectRatio` context option.
+For `UIImageView`, we will only parse PDF with a fixed image size (from the PDF mediaBox information). But we also support you to specify a desired size during image loading using `.imageThumbnailPixelSize` context option. And you can specify whether or not to keep aspect ratio during scale using `.imagePreserveAspectRatio` context option.
 
-Note: Even you're on iOS/tvOS 11+, you can also use the `.pdfPrefersBitmap` context option to force us to generate the bitmap form of PDF, instead of the vector format. This can be used for some general image processing code.
+Note: Once you pass the pixel size, we will always generate the bitmap representation even on iOS/tvOS 11+. If you want the vector format, do not pass them, let `UIImageView` to dynamically stretch the PDF.
 
 + Objective-C
 
@@ -96,8 +96,8 @@ Note: Even you're on iOS/tvOS 11+, you can also use the `.pdfPrefersBitmap` cont
 SDImagePDFCoder *PDFCoder = [SDImagePDFCoder sharedCoder];
 [[SDImageCodersManager sharedManager] addCoder:PDFCoder];
 UIImageView *imageView;
-CGSize PDFImageSize = CGSizeMake(500, 500);
-[imageView sd_setImageWithURL:url placeholderImage:nil options:0 context:@{SDWebImageContextPDFPrefersBitmap : @YES, SDWebImageContextPDFImageSize : @(PDFImageSize)];
+CGSize bitmapSize = CGSizeMake(500, 500);
+[imageView sd_setImageWithURL:url placeholderImage:nil options:0 context:@{SDWebImageContextImageThumbnailPixelSize : @(bitmapSize)];
 ```
 
 + Swift
@@ -106,8 +106,8 @@ CGSize PDFImageSize = CGSizeMake(500, 500);
 let PDFCoder = SDImagePDFCoder.shared
 SDImageCodersManager.shared.addCoder(PDFCoder)
 let imageView: UIImageView
-let PDFImageSize = CGSize(width: 500, height: 500)
-imageView.sd_setImage(with: url, placeholderImage: nil, options: [], context: [.pdfPrefersBitmap : true, .pdfImageSize : PDFImageSize])
+let bitmapSize = CGSize(width: 500, height: 500)
+imageView.sd_setImage(with: url, placeholderImage: nil, options: [], context: [.imageThumbnailPixelSize : bitmapSize])
 ```
 
 ## Export PDF data
@@ -119,15 +119,19 @@ Note: For firmware which is below iOS/tvOS 11+, UIImage does not support PDF vec
 + Objective-C
 
 ```objectivec
-UIImage *image; // UIImage with vector image, or NSImage contains `NSPDFImageRep`
-NSData *imageData = [image sd_imageDataAsFormat:SDImageFormatPDF];
+UIImage *pdfImage; // UIImage with vector image, or NSImage contains `NSPDFImageRep`
+if (pdfImage.sd_isVector) { // This API available in SDWebImage 5.6.0
+    NSData *pdfData = [pdfImage sd_imageDataAsFormat:SDImageFormatPDF];
+}
 ```
 
 + Swift
 
 ```swift
-let image; // UIImage with vector image, or NSImage contains `NSPDFImageRep`
-let imageData = image.sd_imageData(as: .PDF)
+let pdfImage: UIImage // UIImage with vector image, or NSImage contains `NSPDFImageRep`
+if pdfImage.sd_isVector { // This API available in SDWebImage 5.6.0
+    let pdfData = pdfImage.sd_imageData(as: .PDF)
+}
 ```
 
 ## Screenshot

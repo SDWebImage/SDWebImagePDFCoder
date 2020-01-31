@@ -39,5 +39,5 @@ SDWebImageSVGCoder is a SVG coder plugin for SDWebImage framework, which provide
     'DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER' => 'NO'
   }
   
-  s.dependency 'SDWebImage', '~> 5.0'
+  s.dependency 'SDWebImage', '~> 5.5'
 end

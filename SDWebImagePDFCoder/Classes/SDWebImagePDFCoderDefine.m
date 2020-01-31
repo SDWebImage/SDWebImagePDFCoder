@@ -11,3 +11,5 @@ SDWebImageContextOption _Nonnull const SDWebImageContextPDFPageNumber = @"pdfPag
 SDWebImageContextOption _Nonnull const SDWebImageContextPDFPrefersBitmap = @"pdfPrefersBitmap";
 SDWebImageContextOption _Nonnull const SDWebImageContextPDFImageSize = @"pdfImageSize";
 SDWebImageContextOption _Nonnull const SDWebImageContextPDFImagePreserveAspectRatio = @"pdfImagePreserveAspectRatio";
+
+SDImageCoderOption _Nonnull const SDImageCoderDecodePDFPageNumber = @"decodePDFPageNumber";
