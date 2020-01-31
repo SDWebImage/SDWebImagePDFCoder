@@ -135,10 +135,18 @@ static inline NSString *SDBase64DecodedString(NSString *base64String) {
     UIGraphicsBeginPDFPageWithInfo(rect, nil);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
+    
     // Core Graphics Coordinate System convert
     CGContextScaleCTM(context, 1, -1);
     CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
+    
+    // Clip the drawing to the CropBox
+    CGRect cropBox = CGPDFPageGetBoxRect(page, kCGPDFCropBox);
+    CGContextAddRect(context, cropBox);
+    CGContextClip(context);
+    
     CGContextDrawPDFPage(context, page);
+    
     UIGraphicsEndPDFContext();
     
     return [data copy];
@@ -234,6 +242,11 @@ static inline NSString *SDBase64DecodedString(NSString *base64String) {
     
     CGContextConcatCTM(context, scaleTransform);
     CGContextConcatCTM(context, transform);
+    
+    // Clip the drawing to the CropBox
+    CGRect cropBox = CGPDFPageGetBoxRect(page, kCGPDFCropBox);
+    CGContextAddRect(context, cropBox);
+    CGContextClip(context);
     
     CGContextDrawPDFPage(context, page);
     
