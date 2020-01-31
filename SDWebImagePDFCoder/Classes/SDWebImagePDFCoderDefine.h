@@ -32,7 +32,7 @@ FOUNDATION_EXPORT SDWebImageContextOption _Nonnull const SDWebImageContextPDFPre
  @note For iOS/tvOS 11+, you don't need this option and it will be ignored. Because UIImage support built-in vector rendering and scaling for PDF. Changing imageView's contentMode and bounds instead.
  @note For macOS user. Changing imageViews' imageScaling and bounds instead.
  */
-FOUNDATION_EXPORT SDWebImageContextOption _Nonnull const SDWebImageContextPDFImageSize;
+FOUNDATION_EXPORT SDWebImageContextOption _Nonnull const SDWebImageContextPDFImageSize __attribute__((deprecated("Use the new context option (for WebCache category), or coder option (for SDImageCoder protocol) instead", "SDWebImageContextImageThumbnailPixelSize")));
 
 /**
  A BOOL value which specify the whether PDF image should keep aspect ratio during image loading. Because when you specify image size via `SDWebImageContextPDFImageSize`, we need to know whether to keep aspect ratio or not when image size is not equal to PDF cropBox size. (NSNumber)
@@ -40,6 +40,26 @@ FOUNDATION_EXPORT SDWebImageContextOption _Nonnull const SDWebImageContextPDFIma
  @note For iOS/tvOS 11+, you don't need this option and it will be ignored. Because UIImage support built-in vector rendering and scaling for PDF. Changing imageView's contentMode and bounds instead.
  @note For macOS user. Changing imageViews' imageScaling and bounds instead.
  */
-FOUNDATION_EXPORT SDWebImageContextOption _Nonnull const SDWebImageContextPDFImagePreserveAspectRatio;
+FOUNDATION_EXPORT SDWebImageContextOption _Nonnull const SDWebImageContextPDFImagePreserveAspectRatio __attribute__((deprecated("Use the new context option (for WebCache category), or coder option (for SDImageCoder protocol) instead", "SDWebImageContextImagePreserveAspectRatio")));
+
+#pragma mark - Coder Options
+/**
+ A unsigned interger raw value which specify the desired PDF image page number. Because PDF can contains mutiple pages. The page number index is started with 0. (NSNumber)
+ If you don't provide this value, use 0 (the first page) instead.
+ @note works for `SDImageCoder`
+ */
+FOUNDATION_EXPORT SDImageCoderOption _Nonnull const SDImageCoderDecodePDFPageNumber;
+
+/**
+ A BOOL value which specify whether we prefer the actual bitmap representation instead of vector representation for PDF image. This is because the UIImage on iOS 11+ (NSImgae on macOS) can use the vector image format, which support dynamic scale without losing any detail. However, for some image processing logic, user may need the actual bitmap representation to manage pixels. Also, for lower firmware on iOS, the `UIImage` does not support vector rendering, user may want to handle them using the same code. (NSNumber)
+ If you don't provide this value, use NO for default value and prefer the vector format when possible.
+ @note works for `SDImageCoder`
+ */
+FOUNDATION_EXPORT SDImageCoderOption _Nonnull const SDImageCoderDecodePDFPrefersBitmap;
+
+/**
+ `SDImageCoderDecodeThumnailPixelSize`: The same as context option `SDWebImageContextImageThumbnailPixelSize`
+ `SDImageCoderDecodePreserveAspectRatio`: The same as context option `SDWebImageContextImagePreserveAspectRatio`
+ */
 
 NS_ASSUME_NONNULL_END
