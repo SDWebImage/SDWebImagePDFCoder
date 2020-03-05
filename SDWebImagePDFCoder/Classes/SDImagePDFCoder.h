@@ -13,8 +13,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-static const SDImageFormat SDImageFormatPDF = 13;
-
 /***
  SDImagePDFCoder is a PDF image coder, which use the built-in UIKit/AppKit method to decode PDF images. And it will use the Core Graphics to draw PDF images when needed (For example, current firmware does not support built-in rendering). This class does not use PDFKit framwork because we focus on PDF vector images but not document pages rendering.
  
