@@ -26,9 +26,9 @@ SDWebImageSVGCoder is a SVG coder plugin for SDWebImage framework, which provide
   s.author           = { 'DreamPiggy' => 'lizhuoli1126@126.com' }
   s.source           = { :git => 'https://github.com/SDWebImage/SDWebImagePDFCoder.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
   s.tvos.deployment_target = '9.0'
-  s.osx.deployment_target = '10.10'
+  s.osx.deployment_target = '10.11'
   s.watchos.deployment_target = '2.0'
 
   s.source_files = 'SDWebImagePDFCoder/Classes/**/*', 'SDWebImagePDFCoder/Module/SDWebImagePDFCoder.h'
@@ -39,5 +39,5 @@ SDWebImageSVGCoder is a SVG coder plugin for SDWebImage framework, which provide
     'DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER' => 'NO'
   }
   
-  s.dependency 'SDWebImage', '~> 5.6'
+  s.dependency 'SDWebImage', '~> 5.10'
 end

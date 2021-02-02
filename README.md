@@ -18,10 +18,11 @@ You can modify the code or use some other PDF files to check the compatibility.
 
 ## Requirements
 
-+ iOS 8+
++ iOS 9+
 + tvOS 9+
-+ macOS 10.10+
++ macOS 10.11+
 + watchOS 2+
++ Xcode 11+
 
 ## Installation
 
