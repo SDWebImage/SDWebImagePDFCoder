@@ -11,6 +11,13 @@
 
 #define SD_FOUR_CC(c1,c2,c3,c4) ((uint32_t)(((c4) << 24) | ((c3) << 16) | ((c2) << 8) | (c1)))
 
+@interface SDImageIOCoder ()
+
+// From SDWebImage 5.14.1
++ (UIImage *)createBitmapPDFWithData:(nonnull NSData *)data pageNumber:(NSUInteger)pageNumber targetSize:(CGSize)targetSize preserveAspectRatio:(BOOL)preserveAspectRatio;
+
+@end
+
 #if SD_UIKIT || SD_WATCH
 static SEL SDImageWithCGPDFPageSEL = NULL;
 static SEL SDCGPDFPageSEL = NULL;
@@ -56,24 +63,11 @@ static inline NSString *SDBase64DecodedString(NSString *base64String) {
     CGSize imageSize = CGSizeZero;
     BOOL preserveAspectRatio = YES;
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     // Parse args
-    SDWebImageContext *context = options[SDImageCoderWebImageContext];
-    if (context[SDWebImageContextPDFPageNumber]) {
-        pageNumber = [context[SDWebImageContextPDFPageNumber] unsignedIntegerValue];
-    } else if (options[SDImageCoderDecodePDFPageNumber]) {
+    if (options[SDImageCoderDecodePDFPageNumber]) {
         pageNumber = [options[SDImageCoderDecodePDFPageNumber] unsignedIntegerValue];
     }
-    if (context[SDWebImageContextPDFImageSize]) {
-        prefersBitmap = YES;
-        NSValue *sizeValue = context[SDWebImageContextPDFImageSize];
-#if SD_MAC
-        imageSize = sizeValue.sizeValue;
-#else
-        imageSize = sizeValue.CGSizeValue;
-#endif
-    } else if (options[SDImageCoderDecodeThumbnailPixelSize]) {
+    if (options[SDImageCoderDecodeThumbnailPixelSize]) {
         prefersBitmap = YES;
         NSValue *sizeValue = options[SDImageCoderDecodeThumbnailPixelSize];
 #if SD_MAC
@@ -81,13 +75,9 @@ static inline NSString *SDBase64DecodedString(NSString *base64String) {
 #else
         imageSize = sizeValue.CGSizeValue;
 #endif
-    } else if (context[SDWebImageContextPDFPrefersBitmap]) {
-        prefersBitmap = [context[SDWebImageContextPDFPrefersBitmap] boolValue];
     }
-    if (context[SDWebImageContextPDFImagePreserveAspectRatio]) {
-        preserveAspectRatio = [context[SDWebImageContextPDFImagePreserveAspectRatio] boolValue];
-    } else if (options[SDImageCoderDecodePreserveAspectRatio]) {
-        preserveAspectRatio = [context[SDImageCoderDecodePreserveAspectRatio] boolValue];
+    if (options[SDImageCoderDecodePreserveAspectRatio]) {
+        preserveAspectRatio = [options[SDImageCoderDecodePreserveAspectRatio] boolValue];
     }
 #pragma clang diagnostic pop
     
@@ -95,7 +85,8 @@ static inline NSString *SDBase64DecodedString(NSString *base64String) {
     if (!prefersBitmap && [self.class supportsVectorPDFImage]) {
         image = [self createVectorPDFWithData:data pageNumber:pageNumber];
     } else {
-        image = [self createBitmapPDFWithData:data pageNumber:pageNumber targetSize:imageSize preserveAspectRatio:preserveAspectRatio];
+        NSAssert([SDImageIOCoder respondsToSelector:@selector(createBitmapPDFWithData:pageNumber:targetSize:preserveAspectRatio:)], @"SDWebImage from 5.14.1 should contains this API");
+        image = [SDImageIOCoder createBitmapPDFWithData:data pageNumber:pageNumber targetSize:imageSize preserveAspectRatio:preserveAspectRatio];
     }
     
     image.sd_imageFormat = SDImageFormatPDF;
@@ -180,67 +171,6 @@ static inline NSString *SDBase64DecodedString(NSString *base64String) {
     image = ((UIImage *(*)(id,SEL,CGPDFPageRef))[UIImage.class methodForSelector:SDImageWithCGPDFPageSEL])(UIImage.class, SDImageWithCGPDFPageSEL, page);
     CGPDFDocumentRelease(document);
 #endif
-    
-    return image;
-}
-
-#pragma mark - Bitmap PDF representation
-- (UIImage *)createBitmapPDFWithData:(nonnull NSData *)data pageNumber:(NSUInteger)pageNumber targetSize:(CGSize)targetSize preserveAspectRatio:(BOOL)preserveAspectRatio {
-    NSParameterAssert(data);
-    UIImage *image;
-    
-    CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)data);
-    if (!provider) {
-        return nil;
-    }
-    CGPDFDocumentRef document = CGPDFDocumentCreateWithProvider(provider);
-    CGDataProviderRelease(provider);
-    if (!document) {
-        return nil;
-    }
-    
-    // `CGPDFDocumentGetPage` page number is 1-indexed.
-    CGPDFPageRef page = CGPDFDocumentGetPage(document, pageNumber + 1);
-    if (!page) {
-        CGPDFDocumentRelease(document);
-        return nil;
-    }
-    
-    CGPDFBox box = kCGPDFMediaBox;
-    CGRect rect = CGPDFPageGetBoxRect(page, box);
-    CGRect targetRect = rect;
-    if (!CGSizeEqualToSize(targetSize, CGSizeZero)) {
-        targetRect = CGRectMake(0, 0, targetSize.width, targetSize.height);
-    }
-    
-    CGFloat xRatio = targetRect.size.width / rect.size.width;
-    CGFloat yRatio = targetRect.size.height / rect.size.height;
-    CGFloat xScale = preserveAspectRatio ? MIN(xRatio, yRatio) : xRatio;
-    CGFloat yScale = preserveAspectRatio ? MIN(xRatio, yRatio) : yRatio;
-    
-    // CGPDFPageGetDrawingTransform will only scale down, but not scale up, so we need calculcate the actual scale again
-    CGRect drawRect = CGRectMake( 0, 0, targetRect.size.width / xScale, targetRect.size.height / yScale);
-    CGAffineTransform scaleTransform = CGAffineTransformMakeScale(xScale, yScale);
-    CGAffineTransform transform = CGPDFPageGetDrawingTransform(page, box, drawRect, 0, preserveAspectRatio);
-    
-    SDGraphicsBeginImageContextWithOptions(targetRect.size, NO, 0);
-    CGContextRef context = SDGraphicsGetCurrentContext();
-    
-#if SD_UIKIT || SD_WATCH
-    // Core Graphics coordinate system use the bottom-left, UIkit use the flipped one
-    CGContextTranslateCTM(context, 0, targetRect.size.height);
-    CGContextScaleCTM(context, 1, -1);
-#endif
-    
-    CGContextConcatCTM(context, scaleTransform);
-    CGContextConcatCTM(context, transform);
-    
-    CGContextDrawPDFPage(context, page);
-    
-    image = SDGraphicsGetImageFromCurrentImageContext();
-    SDGraphicsEndImageContext();
-    
-    CGPDFDocumentRelease(document);
     
     return image;
 }
