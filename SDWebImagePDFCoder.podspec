@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SDWebImagePDFCoder'
-  s.version          = '0.8.0'
+  s.version          = '1.0.0'
   s.summary          = 'A PDF coder plugin for SDWebImage, using built-in framework'
 
 # This description is used to generate tags and improve search results.
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-SDWebImageSVGCoder is a SVG coder plugin for SDWebImage framework, which provide the image loading support for SVG using SVGKit SVG engine.
+SDWebImagePDFCoder is a PDF coder plugin for SDWebImage framework.
                        DESC
 
   s.homepage         = 'https://github.com/SDWebImage/SDWebImagePDFCoder'
@@ -39,5 +39,5 @@ SDWebImageSVGCoder is a SVG coder plugin for SDWebImage framework, which provide
     'DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER' => 'NO'
   }
   
-  s.dependency 'SDWebImage', '~> 5.10'
+  s.dependency 'SDWebImage', '>= 5.14.1'
 end

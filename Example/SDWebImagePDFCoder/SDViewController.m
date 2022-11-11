@@ -67,8 +67,8 @@
     [imageView3 sd_setImageWithURL:pdfURL3 placeholderImage:nil options:SDWebImageRetryFailed context:@{SDWebImageContextImageThumbnailPixelSize: @(CGSizeMake(100, 100))} progress:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (image) {
             NSLog(@"PDF bitmap load success.");
-            NSData *svgData = [image sd_imageDataAsFormat:SDImageFormatPDF];
-            NSAssert(!svgData, @"SVG Data should not exist");
+            NSData *pdfData = [image sd_imageDataAsFormat:SDImageFormatPDF];
+            NSAssert(!pdfData, @"PDF Data should not exist");
         }
     }];
 }
