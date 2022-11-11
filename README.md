@@ -22,7 +22,7 @@ You can modify the code or use some other PDF files to check the compatibility.
 + tvOS 9+
 + macOS 10.11+
 + watchOS 2+
-+ Xcode 11+
++ Xcode 13+
 
 ## Installation
 
@@ -50,7 +50,7 @@ SDWebImagePDFCoder is available through [Swift Package Manager](https://swift.or
 ```swift
 let package = Package(
     dependencies: [
-        .package(url: "https://github.com/SDWebImage/SDWebImagePDFCoder.git", from: "0.6")
+        .package(url: "https://github.com/SDWebImage/SDWebImagePDFCoder.git", from: "1.0")
     ]
 )
 ```
@@ -115,24 +115,21 @@ imageView.sd_setImage(with: url, placeholderImage: nil, options: [], context: [.
 
 `SDWebImagePDFCoder` provide an easy way to export the PDF image generated from framework, to the original PDF data.
 
-Note: For firmware which is below iOS/tvOS 11+, UIImage does not support PDF vector image as well as exporting. The bitmap form of PDF does not support PDF data export as well.
+If the input image is already vector PDF based, will export that instead (fast).
+Else we will create an empty PDF page with the bitmap image drawn on (slow).
 
 + Objective-C
 
 ```objectivec
 UIImage *pdfImage; // UIImage with vector image, or NSImage contains `NSPDFImageRep`
-if (pdfImage.sd_isVector) { // This API available in SDWebImage 5.6.0
-    NSData *pdfData = [pdfImage sd_imageDataAsFormat:SDImageFormatPDF];
-}
+NSData *pdfData = [pdfImage sd_imageDataAsFormat:SDImageFormatPDF]; // May return the vector data, or create new PDF with current image drawn on
 ```
 
 + Swift
 
 ```swift
 let pdfImage: UIImage // UIImage with vector image, or NSImage contains `NSPDFImageRep`
-if pdfImage.sd_isVector { // This API available in SDWebImage 5.6.0
-    let pdfData = pdfImage.sd_imageData(as: .PDF)
-}
+let pdfData = pdfImage.sd_imageData(as: .PDF) // May return the vector data, or create new PDF with current image drawn on
 ```
 
 ## Screenshot

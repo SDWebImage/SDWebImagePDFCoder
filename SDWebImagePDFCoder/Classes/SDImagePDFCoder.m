@@ -62,7 +62,7 @@ static inline NSString *SDBase64DecodedString(NSString *base64String) {
     BOOL prefersBitmap = NO;
     CGSize imageSize = CGSizeZero;
     BOOL preserveAspectRatio = YES;
-
+    
     // Parse args
     if (options[SDImageCoderDecodePDFPageNumber]) {
         pageNumber = [options[SDImageCoderDecodePDFPageNumber] unsignedIntegerValue];
@@ -101,20 +101,20 @@ static inline NSString *SDBase64DecodedString(NSString *base64String) {
 
 - (NSData *)encodedDataWithImage:(UIImage *)image format:(SDImageFormat)format options:(SDImageCoderOptions *)options {
     if (![self.class supportsVectorPDFImage]) {
-        return nil;
+        return [self.class createPDFDataWithBitmapImage:image];
     }
 #if SD_MAC
     // Pixel size use `NSImageRepMatchesDevice` to avoid CGImage bitmap format
     NSRect imageRect = NSMakeRect(0, 0, NSImageRepMatchesDevice, NSImageRepMatchesDevice);
     NSImageRep *imageRep = [image bestRepresentationForRect:imageRect context:nil hints:nil];
     if (![imageRep isKindOfClass:NSPDFImageRep.class]) {
-        return nil;
+        return [self.class createPDFDataWithBitmapImage:image];
     }
     return ((NSPDFImageRep *)imageRep).PDFRepresentation;
 #else
     CGPDFPageRef page = ((CGPDFPageRef (*)(id,SEL))[image methodForSelector:SDCGPDFPageSEL])(image, SDCGPDFPageSEL);
     if (!page) {
-        return nil;
+        return [self.class createPDFDataWithBitmapImage:image];
     }
     
     // Draw the PDF page using PDFContextToData
@@ -173,6 +173,26 @@ static inline NSString *SDBase64DecodedString(NSString *base64String) {
 #endif
     
     return image;
+}
+
+#pragma mark - Bitmap PDF creation
++ (NSData *)createPDFDataWithBitmapImage:(UIImage *)image {
+    CGImageRef imageRef = image.CGImage;
+    if (!imageRef) {
+        return nil;
+    }
+    NSMutableData *pdfData = [NSMutableData data];
+    CGDataConsumerRef pdfConsumer = CGDataConsumerCreateWithCFData((__bridge CFMutableDataRef)pdfData);
+    
+    CGSize imageSize = CGSizeMake(CGImageGetWidth(imageRef), CGImageGetHeight(imageRef));
+    CGRect mediaBox = CGRectMake(0, 0, imageSize.width, imageSize.height);
+    CGContextRef context = CGPDFContextCreate(pdfConsumer, &mediaBox, NULL);
+    
+    CGContextBeginPage(context, &mediaBox);
+    CGContextDrawImage(context, mediaBox, imageRef);
+    CGContextEndPage(context);
+    
+    return [pdfData copy];
 }
 
 + (BOOL)supportsVectorPDFImage {
