@@ -40,7 +40,7 @@
             NSAssert(pdfData.length > 0, @"PDF Data export failed");
         }
     }];
-    [imageView2 sd_setImageWithURL:pdfURL2 placeholderImage:nil options:SDWebImageRetryFailed context:@{SDWebImageContextPDFImageSize : @(imageView2.bounds.size)} progress:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    [imageView2 sd_setImageWithURL:pdfURL2 placeholderImage:nil options:SDWebImageRetryFailed context:@{SDWebImageContextImageThumbnailPixelSize : @(imageView2.bounds.size)} progress:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (image) {
             NSLog(@"PDF load animation success");
             [NSAnimationContext runAnimationGroup:^(NSAnimationContext * _Nonnull context) {
