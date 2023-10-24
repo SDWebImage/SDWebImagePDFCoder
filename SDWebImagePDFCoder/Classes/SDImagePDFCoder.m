@@ -193,9 +193,8 @@ static inline NSString *SDBase64DecodedString(NSString *base64String) {
     CGContextDrawImage(context, mediaBox, imageRef);
     CGContextEndPage(context);
     
-    UIImage *result = [pdfData copy];
+    NSData *result = [pdfData copy];
     
-    CGImageRelease(imageRef);
     CGDataConsumerRelease(pdfConsumer);
     CGContextRelease(context);
     
