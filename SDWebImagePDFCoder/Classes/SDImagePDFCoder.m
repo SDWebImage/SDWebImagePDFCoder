@@ -182,6 +182,7 @@ static inline NSString *SDBase64DecodedString(NSString *base64String) {
         return nil;
     }
     NSMutableData *pdfData = [NSMutableData data];
+    
     CGDataConsumerRef pdfConsumer = CGDataConsumerCreateWithCFData((__bridge CFMutableDataRef)pdfData);
     
     CGSize imageSize = CGSizeMake(CGImageGetWidth(imageRef), CGImageGetHeight(imageRef));
@@ -192,7 +193,13 @@ static inline NSString *SDBase64DecodedString(NSString *base64String) {
     CGContextDrawImage(context, mediaBox, imageRef);
     CGContextEndPage(context);
     
-    return [pdfData copy];
+    UIImage *result = [pdfData copy];
+    
+    CGImageRelease(imageRef);
+    CGDataConsumerRelease(pdfConsumer);
+    CGContextRelease(context);
+    
+    return result;
 }
 
 + (BOOL)supportsVectorPDFImage {
